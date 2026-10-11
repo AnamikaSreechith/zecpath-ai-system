@@ -1,0 +1,94 @@
+{
+  "candidate_id": "CAND005",
+  "designation": "Project Manager",
+  "professional_summary": "PMP-certified Project Manager with 4 years of experience delivering software and IT projects using Agile and Waterfall methodologies.",
+  "skills": [
+    {
+      "name": "Project Planning",
+      "category": "Project Management"
+    },
+    {
+      "name": "Budget Management",
+      "category": "Project Management"
+    },
+    {
+      "name": "Risk Management",
+      "category": "Project Management"
+    },
+    {
+      "name": "Stakeholder Communication",
+      "category": "Communication"
+    },
+    {
+      "name": "Agile",
+      "category": "Methodology"
+    },
+    {
+      "name": "Scrum",
+      "category": "Methodology"
+    },
+    {
+      "name": "Waterfall",
+      "category": "Methodology"
+    },
+    {
+      "name": "Jira",
+      "category": "Project Tools"
+    },
+    {
+      "name": "Confluence",
+      "category": "Project Tools"
+    },
+    {
+      "name": "MS Project",
+      "category": "Project Tools"
+    },
+    {
+      "name": "Power BI",
+      "category": "Analytics"
+    },
+    {
+      "name": "Leadership",
+      "category": "Soft Skills"
+    },
+    {
+      "name": "Team Management",
+      "category": "Soft Skills"
+    }
+  ],
+  "experience": [
+    {
+      "designation": "Project Manager",
+      "company": "Infosphere Technologies Pvt. Ltd.",
+      "start_date": "2024-06",
+      "end_date": null
+    },
+    {
+      "designation": "Assistant Project Manager",
+      "company": "Infosphere Technologies Pvt. Ltd.",
+      "start_date": "2023-07",
+      "end_date": "2024-05"
+    },
+    {
+      "designation": "Project Coordinator",
+      "company": "Nexora Solutions",
+      "start_date": "2022-07",
+      "end_date": "2023-06"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology",
+      "field": "Information Technology",
+      "institution": "JNTU College of Engineering",
+      "graduation_year": 2022,
+      "grade": "8.1/10 CGPA"
+    }
+  ],
+  "certifications": [
+    "Project Management Professional (PMP)",
+    "Certified ScrumMaster (CSM)",
+    "Google Project Management Professional Certificate",
+    "Jira Fundamentals"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "job_id": "JOB002",
+  "job_title": "HR Recruiter",
+  "department": "Human Resources",
+  "job_type": "Non-Technical",
+  "experience_required": {
+    "minimum_years": 0,
+    "maximum_years": 2
+  },
+  "education_requirements": [
+    "Bachelor's degree in Human Resources, Business Administration, or a related field"
+  ],
+  "required_skills": [
+    {
+      "name": "Candidate Sourcing",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Resume Screening",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Interview Coordination",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Communication",
+      "category": "Soft Skills"
+    }
+  ],
+  "preferred_skills": [
+    {
+      "name": "LinkedIn Recruiter",
+      "category": "Recruitment Tools"
+    },
+    {
+      "name": "Applicant Tracking Systems",
+      "category": "Recruitment Tools"
+    },
+    {
+      "name": "Microsoft Excel",
+      "category": "Productivity"
+    }
+  ],
+  "responsibilities": [
+    "Source candidates through job portals and professional networks",
+    "Screen resumes against job requirements",
+    "Coordinate interviews with candidates and hiring managers",
+    "Maintain recruitment records and hiring reports",
+    "Support offer management and onboarding"
+  ],
+  "certifications": []
+}

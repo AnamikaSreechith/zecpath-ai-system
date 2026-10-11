@@ -1,0 +1,89 @@
+{
+  "candidate_id": "CAND009",
+  "designation": "AI Engineer Fresher",
+  "professional_summary": "AI Engineer fresher with a B.Tech in Artificial Intelligence and Data Science and project experience in deep learning, NLP, generative AI, and model deployment.",
+  "skills": [
+    {
+      "name": "Python",
+      "category": "Programming"
+    },
+    {
+      "name": "SQL",
+      "category": "Database"
+    },
+    {
+      "name": "Machine Learning",
+      "category": "AI"
+    },
+    {
+      "name": "Deep Learning",
+      "category": "AI"
+    },
+    {
+      "name": "Natural Language Processing",
+      "category": "AI"
+    },
+    {
+      "name": "Computer Vision",
+      "category": "AI"
+    },
+    {
+      "name": "Prompt Engineering",
+      "category": "Generative AI"
+    },
+    {
+      "name": "LLMs",
+      "category": "Generative AI"
+    },
+    {
+      "name": "Retrieval-Augmented Generation",
+      "category": "Generative AI"
+    },
+    {
+      "name": "LangChain",
+      "category": "Framework"
+    },
+    {
+      "name": "OpenAI API",
+      "category": "AI Tools"
+    },
+    {
+      "name": "PyTorch",
+      "category": "Deep Learning"
+    },
+    {
+      "name": "TensorFlow",
+      "category": "Deep Learning"
+    },
+    {
+      "name": "FastAPI",
+      "category": "Deployment"
+    },
+    {
+      "name": "Docker",
+      "category": "Deployment"
+    }
+  ],
+  "experience": [
+    {
+      "designation": "AI Engineer Intern",
+      "company": "CortexLabs Technologies",
+      "start_date": "2026-01",
+      "end_date": "2026-04"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology",
+      "field": "Artificial Intelligence and Data Science",
+      "institution": "Government Engineering College",
+      "graduation_year": 2026,
+      "grade": "8.7/10 CGPA"
+    }
+  ],
+  "certifications": [
+    "Deep Learning Specialization - DeepLearning.AI",
+    "Generative AI with LLMs",
+    "Azure AI Fundamentals (AI-900)"
+  ]
+}

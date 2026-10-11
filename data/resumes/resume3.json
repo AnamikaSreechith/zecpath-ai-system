@@ -1,0 +1,110 @@
+{
+  "candidate_id": "CAND003",
+  "designation": "Marketing Executive",
+  "professional_summary": "Marketing professional with 3 years of experience in digital marketing, content strategy, campaign management, SEO, paid media, and lead generation.",
+  "skills": [
+    {
+      "name": "SEO",
+      "category": "Digital Marketing"
+    },
+    {
+      "name": "SEM",
+      "category": "Digital Marketing"
+    },
+    {
+      "name": "Google Ads",
+      "category": "Advertising"
+    },
+    {
+      "name": "Meta Ads",
+      "category": "Advertising"
+    },
+    {
+      "name": "Email Marketing",
+      "category": "Marketing"
+    },
+    {
+      "name": "Social Media Marketing",
+      "category": "Marketing"
+    },
+    {
+      "name": "Content Marketing",
+      "category": "Marketing"
+    },
+    {
+      "name": "Google Analytics 4",
+      "category": "Analytics"
+    },
+    {
+      "name": "Google Search Console",
+      "category": "Analytics"
+    },
+    {
+      "name": "HubSpot",
+      "category": "CRM"
+    },
+    {
+      "name": "Excel",
+      "category": "Analytics"
+    },
+    {
+      "name": "Market Research",
+      "category": "Strategy"
+    },
+    {
+      "name": "A/B Testing",
+      "category": "Optimization"
+    },
+    {
+      "name": "Communication",
+      "category": "Soft Skills"
+    },
+    {
+      "name": "Team Collaboration",
+      "category": "Soft Skills"
+    }
+  ],
+  "experience": [
+    {
+      "designation": "Marketing Executive",
+      "company": "BrightWave Solutions Pvt. Ltd.",
+      "start_date": "2024-08",
+      "end_date": null
+    },
+    {
+      "designation": "Digital Marketing Associate",
+      "company": "Zenith Media Group",
+      "start_date": "2023-07",
+      "end_date": "2024-07"
+    },
+    {
+      "designation": "Marketing Intern",
+      "company": "Orbit Consumer Brands",
+      "start_date": "2023-01",
+      "end_date": "2023-06"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Business Administration",
+      "field": "Marketing",
+      "institution": "Symbiosis Institute of Management Studies",
+      "graduation_year": 2023,
+      "grade": "7.9/10 CGPA"
+    },
+    {
+      "degree": "Bachelor of Commerce",
+      "field": "Commerce",
+      "institution": "Fergusson College",
+      "graduation_year": 2021,
+      "grade": "74%"
+    }
+  ],
+  "certifications": [
+    "Google Analytics Certification",
+    "Google Ads Search Certification",
+    "HubSpot Inbound Marketing",
+    "Meta Certified Digital Marketing Associate",
+    "SEMrush SEO Toolkit"
+  ]
+}

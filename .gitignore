@@ -37,3 +37,10 @@ Thumbs.db
 data/*
 !data/README.md
 !data/.gitkeep
+
+# Track Day 4 project deliverables
+!data/resumes/
+!data/job_descriptions/
+!data/schemas/
+!data/ai_data_entities.md
+!data/day4_analysis_report.md

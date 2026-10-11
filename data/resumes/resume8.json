@@ -1,0 +1,84 @@
+{
+  "candidate_id": "CAND008",
+  "designation": "Entry-Level Finance / Accounting Professional",
+  "professional_summary": "Commerce graduate with a foundation in financial accounting, taxation, auditing, and financial analysis, with internship experience in bookkeeping and financial reporting.",
+  "skills": [
+    {
+      "name": "Financial Accounting",
+      "category": "Accounting"
+    },
+    {
+      "name": "Bookkeeping",
+      "category": "Accounting"
+    },
+    {
+      "name": "Bank Reconciliation",
+      "category": "Accounting"
+    },
+    {
+      "name": "Accounts Payable and Receivable",
+      "category": "Accounting"
+    },
+    {
+      "name": "GST Returns",
+      "category": "Taxation"
+    },
+    {
+      "name": "Tally Prime",
+      "category": "Accounting Software"
+    },
+    {
+      "name": "Microsoft Excel",
+      "category": "Spreadsheet"
+    },
+    {
+      "name": "QuickBooks",
+      "category": "Accounting Software"
+    },
+    {
+      "name": "Financial Analysis",
+      "category": "Finance"
+    },
+    {
+      "name": "Budgeting",
+      "category": "Finance"
+    },
+    {
+      "name": "Attention to Detail",
+      "category": "Soft Skills"
+    },
+    {
+      "name": "Analytical Thinking",
+      "category": "Soft Skills"
+    }
+  ],
+  "experience": [
+    {
+      "designation": "Accounts Intern",
+      "company": "Mathew & Associates, Chartered Accountants",
+      "start_date": "2026-01",
+      "end_date": "2026-04"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Commerce",
+      "field": "Finance",
+      "institution": "Baselius College",
+      "graduation_year": 2026,
+      "grade": "8.3/10 CGPA"
+    },
+    {
+      "degree": "Higher Secondary",
+      "field": "Commerce",
+      "institution": "St. Mary's Higher Secondary School",
+      "graduation_year": 2023,
+      "grade": "92%"
+    }
+  ],
+  "certifications": [
+    "Tally Prime with GST Certification",
+    "Financial Accounting Fundamentals",
+    "CMA Foundation (Appearing)"
+  ]
+}

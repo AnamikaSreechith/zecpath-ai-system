@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Zecpath Resume Schema",
+  "description": "Standard structure for storing candidate resume information.",
+  "type": "object",
+  "required": [
+    "candidate_id",
+    "designation",
+    "professional_summary",
+    "skills",
+    "experience",
+    "education",
+    "certifications"
+  ],
+  "properties": {
+    "candidate_id": {
+      "type": "string"
+    },
+    "designation": {
+      "type": "string"
+    },
+    "professional_summary": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "category"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "experience": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "designation",
+          "company",
+          "start_date",
+          "end_date"
+        ],
+        "properties": {
+          "designation": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "start_date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}$"
+          },
+          "end_date": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^\\d{4}-\\d{2}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "degree",
+          "field",
+          "institution",
+          "graduation_year",
+          "grade"
+        ],
+        "properties": {
+          "degree": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "graduation_year": {
+            "type": "integer"
+          },
+          "grade": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,53 @@
+{
+  "job_id": "JOB001",
+  "job_title": "Python Developer",
+  "department": "Engineering",
+  "job_type": "Technical",
+  "experience_required": {
+    "minimum_years": 1,
+    "maximum_years": 3
+  },
+  "education_requirements": [
+    "Bachelor's degree in Computer Science or a related field"
+  ],
+  "required_skills": [
+    {
+      "name": "Python",
+      "category": "Programming"
+    },
+    {
+      "name": "SQL",
+      "category": "Database"
+    },
+    {
+      "name": "REST APIs",
+      "category": "Backend"
+    },
+    {
+      "name": "Git",
+      "category": "Development Tools"
+    }
+  ],
+  "preferred_skills": [
+    {
+      "name": "FastAPI",
+      "category": "Backend"
+    },
+    {
+      "name": "Docker",
+      "category": "DevOps"
+    },
+    {
+      "name": "AWS",
+      "category": "Cloud"
+    }
+  ],
+  "responsibilities": [
+    "Develop and maintain Python applications",
+    "Build and integrate REST APIs",
+    "Write and optimize SQL queries",
+    "Write tests and maintain code quality",
+    "Collaborate with the engineering team"
+  ],
+  "certifications": []
+}
