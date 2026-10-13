@@ -1,0 +1,19 @@
+Job Title: Python Developer
+
+We are looking for a Python Developer to join our Engineering team.
+
+Requirements:
+- 1 to 3 years of experience in software development.
+- Strong knowledge of Python programming.
+- Experience working with SQL databases.
+- Knowledge of RESTful APIs and Git.
+- A Bachelor's degree in Computer Science or a related field is preferred.
+
+Preferred Skills:
+- Experience with FastAPI.
+- Familiarity with Docker and Amazon Web Services (AWS).
+
+Responsibilities:
+- Develop and maintain Python applications.
+- Build and integrate REST APIs.
+- Write and optimize SQL queries.

@@ -1,0 +1,27 @@
+{
+    "job_id": "hr_recruiter_raw",
+    "job_title": "HR Recruiter",
+    "required_skills": [
+        "candidate sourcing",
+        "resume screening",
+        "communication"
+    ],
+    "preferred_skills": [
+        "linkedin recruiter",
+        "applicant tracking systems",
+        "microsoft excel"
+    ],
+    "experience_required": {
+        "minimum_years": 0,
+        "maximum_years": 2
+    },
+    "education_requirements": {
+        "minimum_level": "Bachelor's degree",
+        "fields": [
+            "Human Resources",
+            "Business Administration"
+        ]
+    },
+    "normalized_text": "Job Title: HR Recruiter\n\nWe are looking for an HR Recruiter to join our Human Resources team.\n\nRequirements:\n- 0 to 2 years of experience in recruitment.\n- Knowledge of candidate sourcing and resume screening.\n- Experience coordinating interviews.\n- Good communication skills.\n- A Bachelor's degree in Human Resources, Business Administration, or a related field.\n\nPreferred Skills:\n- Experience with LinkedIn Recruiter.\n- Familiarity with Applicant Tracking Systems (ATS).\n- Knowledge of Microsoft Excel.\n\nResponsibilities:\n- Source candidates through job portals and professional networks.\n- Screen resumes against job requirements.\n- Coordinate interviews with candidates and hiring managers.\n- Maintain recruitment records and hiring reports.\n- Support offer management and onboarding.",
+    "status": "processed"
+}

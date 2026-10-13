@@ -37,6 +37,9 @@ Thumbs.db
 data/*
 !data/README.md
 !data/.gitkeep
+!data/day6_jd_parsing_documentation.md
+!data/job_descriptions/
+!data/job_descriptions/**
 
 # Track Day 4 project deliverables
 !data/resumes/

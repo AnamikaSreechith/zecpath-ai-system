@@ -1,0 +1,27 @@
+{
+    "job_id": "python_developer_raw",
+    "job_title": "Python Developer",
+    "required_skills": [
+        "python",
+        "sql",
+        "rest apis",
+        "git"
+    ],
+    "preferred_skills": [
+        "fastapi",
+        "docker",
+        "aws"
+    ],
+    "experience_required": {
+        "minimum_years": 1,
+        "maximum_years": 3
+    },
+    "education_requirements": {
+        "minimum_level": "Bachelor's degree",
+        "fields": [
+            "Computer Science"
+        ]
+    },
+    "normalized_text": "Job Title: Python Developer\n\nWe are looking for a Python Developer to join our Engineering team.\n\nRequirements:\n- 1 to 3 years of experience in software development.\n- Strong knowledge of Python programming.\n- Experience working with SQL databases.\n- Knowledge of RESTful APIs and Git.\n- A Bachelor's degree in Computer Science or a related field is preferred.\n\nPreferred Skills:\n- Experience with FastAPI.\n- Familiarity with Docker and Amazon Web Services (AWS).\n\nResponsibilities:\n- Develop and maintain Python applications.\n- Build and integrate REST APIs.\n- Write and optimize SQL queries.",
+    "status": "processed"
+}
