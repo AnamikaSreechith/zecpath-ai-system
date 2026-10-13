@@ -39,7 +39,10 @@ data/*
 !data/.gitkeep
 !data/day6_jd_parsing_documentation.md
 !data/job_descriptions/
-!data/job_descriptions/**
+!data/job_descriptions/
+!data/day7_ai_data_pipeline.md
+!data/day7_storage_structure.md
+!data/day7_metadata_standards.md**
 
 # Track Day 4 project deliverables
 !data/resumes/
