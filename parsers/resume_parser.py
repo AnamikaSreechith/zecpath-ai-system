@@ -2,7 +2,7 @@
 import re
 import json
 from pathlib import Path
-
+from parsers.resume_section_classifier import segment_resume
 from pypdf import PdfReader
 from docx import Document
 
@@ -97,9 +97,8 @@ def parse_resume_text(text):
         "status": "processed"
     }
 
-
 def extract_resume(file_path, output_dir="data/extracted_resumes"):
-    """Extract, clean, and save text from a PDF or DOCX resume."""
+    """Extract, clean, segment, and save text from a PDF or DOCX resume."""
     file_path = Path(file_path)
 
     if not file_path.is_file():
@@ -109,18 +108,30 @@ def extract_resume(file_path, output_dir="data/extracted_resumes"):
 
     if extension == ".pdf":
         raw_text = extract_pdf_text(file_path)
+
     elif extension == ".docx":
         raw_text = extract_docx_text(file_path)
+
     else:
         raise ValueError("Unsupported file type. Use PDF or DOCX.")
 
+    # Step 1: Clean the extracted resume text.
     result = parse_resume_text(raw_text)
 
+    # Step 2: Detect and separate resume sections.
+    sections = segment_resume(result["cleaned_text"])
+
+    # Add the detected sections to the result.
+    result["sections"] = sections
+
+    # Create output directory if it does not exist.
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
+    # Create output JSON filename.
     output_file = output_path / f"{file_path.stem}.json"
 
+    # Save the complete structured result.
     with open(output_file, "w", encoding="utf-8") as file:
         json.dump(
             {
@@ -132,6 +143,6 @@ def extract_resume(file_path, output_dir="data/extracted_resumes"):
             ensure_ascii=False
         )
 
-    logger.info("Cleaned resume output saved: %s", output_file)
+    logger.info("Structured resume output saved: %s", output_file)
 
     return result

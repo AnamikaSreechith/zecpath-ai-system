@@ -93,3 +93,35 @@ def test_extract_resume_saves_json(tmp_path, monkeypatch):
 
     assert saved_data["source_file"] == "resume.pdf"
     assert saved_data["cleaned_text"] == "Python Developer\n- SQL"
+
+def test_resume_extraction_contains_sections(tmp_path):
+    resume_text = """
+    ANAMIKA TEST RESUME
+
+    Skills
+    Python
+    SQL
+
+    Education
+    B.Tech Computer Science
+
+    Experience
+    Python Developer Intern
+
+    Projects
+    Resume Parser
+    """
+
+    result = parse_resume_text(resume_text)
+
+    from parsers.resume_section_classifier import segment_resume
+
+    sections = segment_resume(result["cleaned_text"])
+
+    assert "skills" in sections
+    assert "education" in sections
+    assert "work_experience" in sections
+    assert "projects" in sections
+
+    assert "Python" in sections["skills"]
+    assert "B.Tech Computer Science" in sections["education"]
