@@ -1,12 +1,15 @@
-
 import re
 import json
 from pathlib import Path
+
 from parsers.resume_section_classifier import segment_resume
+from parsers.skill_extraction_engine import extract_skills
+
 from pypdf import PdfReader
 from docx import Document
 
 from utils.logger import get_logger
+
 
 logger = get_logger(__name__)
 
@@ -27,6 +30,7 @@ def extract_pdf_text(file_path):
         )
 
     logger.info("Text extracted from PDF: %s", file_path)
+
     return text
 
 
@@ -47,6 +51,7 @@ def extract_docx_text(file_path):
                 for cell in row.cells
                 if cell.text.strip()
             ]
+
             if row_text:
                 parts.append(" | ".join(row_text))
 
@@ -56,34 +61,58 @@ def extract_docx_text(file_path):
         raise ValueError("No text found in DOCX resume.")
 
     logger.info("Text extracted from DOCX: %s", file_path)
+
     return text
 
 
 def clean_resume_text(text):
     """Clean whitespace, bullet symbols, and unwanted control characters."""
+
     if not text or not text.strip():
         raise ValueError("Resume text cannot be empty.")
 
-    # Normalize line endings and remove control characters.
+    # Normalize line endings.
     text = text.replace("\r\n", "\n").replace("\r", "\n")
-    text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", text)
+
+    # Remove unwanted control characters.
+    text = re.sub(
+        r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]",
+        "",
+        text
+    )
 
     # Standardize common bullet symbols.
-    text = re.sub(r"[•●▪◦‣⁃]", "-", text)
+    text = re.sub(
+        r"[•●▪◦‣⁃]",
+        "-",
+        text
+    )
 
-    # Remove trailing spaces and repeated blank lines.
+    # Remove trailing spaces from each line.
     lines = [line.strip() for line in text.split("\n")]
-    text = "\n".join(lines)
-    text = re.sub(r"\n{3,}", "\n\n", text)
 
-    # Normalize repeated spaces without changing capitalization.
-    text = re.sub(r"[ \t]+", " ", text)
+    text = "\n".join(lines)
+
+    # Remove excessive blank lines.
+    text = re.sub(
+        r"\n{3,}",
+        "\n\n",
+        text
+    )
+
+    # Normalize repeated spaces.
+    text = re.sub(
+        r"[ \t]+",
+        " ",
+        text
+    )
 
     return text.strip()
 
 
 def parse_resume_text(text):
     """Validate resume text and return a basic structured result."""
+
     if not text or not text.strip():
         raise ValueError("Resume text cannot be empty.")
 
@@ -97,15 +126,26 @@ def parse_resume_text(text):
         "status": "processed"
     }
 
-def extract_resume(file_path, output_dir="data/extracted_resumes"):
-    """Extract, clean, segment, and save text from a PDF or DOCX resume."""
+
+def extract_resume(
+    file_path,
+    output_dir="data/extracted_resumes"
+):
+    """
+    Extract, clean, segment, extract skills,
+    and save structured resume data.
+    """
+
     file_path = Path(file_path)
 
     if not file_path.is_file():
-        raise FileNotFoundError(f"Resume file not found: {file_path}")
+        raise FileNotFoundError(
+            f"Resume file not found: {file_path}"
+        )
 
     extension = file_path.suffix.lower()
 
+    # Step 1: Extract raw text from the resume.
     if extension == ".pdf":
         raw_text = extract_pdf_text(file_path)
 
@@ -113,26 +153,53 @@ def extract_resume(file_path, output_dir="data/extracted_resumes"):
         raw_text = extract_docx_text(file_path)
 
     else:
-        raise ValueError("Unsupported file type. Use PDF or DOCX.")
+        raise ValueError(
+            "Unsupported file type. Use PDF or DOCX."
+        )
 
-    # Step 1: Clean the extracted resume text.
+    # Step 2: Clean the extracted resume text.
     result = parse_resume_text(raw_text)
 
-    # Step 2: Detect and separate resume sections.
-    sections = segment_resume(result["cleaned_text"])
+    # Step 3: Detect and separate resume sections.
+    sections = segment_resume(
+        result["cleaned_text"]
+    )
 
-    # Add the detected sections to the result.
+    # Step 4: Extract skills from the Skills section.
+    skills_text = sections.get("skills", "")
+
+    if skills_text.strip():
+        skills = extract_skills(skills_text)
+    else:
+        skills = []
+
+    # Step 5: Add structured sections to the result.
     result["sections"] = sections
 
-    # Create output directory if it does not exist.
+    # Step 6: Add normalized and scored skills.
+    result["extracted_skills"] = skills
+
+    # Step 7: Create output directory if it does not exist.
     output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
 
-    # Create output JSON filename.
-    output_file = output_path / f"{file_path.stem}.json"
+    output_path.mkdir(
+        parents=True,
+        exist_ok=True
+    )
 
-    # Save the complete structured result.
-    with open(output_file, "w", encoding="utf-8") as file:
+    # Step 8: Create output JSON filename.
+    output_file = (
+        output_path /
+        f"{file_path.stem}.json"
+    )
+
+    # Step 9: Save the complete structured result.
+    with open(
+        output_file,
+        "w",
+        encoding="utf-8"
+    ) as file:
+
         json.dump(
             {
                 "source_file": file_path.name,
@@ -143,6 +210,9 @@ def extract_resume(file_path, output_dir="data/extracted_resumes"):
             ensure_ascii=False
         )
 
-    logger.info("Structured resume output saved: %s", output_file)
+    logger.info(
+        "Structured resume output saved: %s",
+        output_file
+    )
 
     return result
