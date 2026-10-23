@@ -4,6 +4,8 @@ from pathlib import Path
 from parsers.experience_parser import parse_experience
 from parsers.resume_section_classifier import segment_resume
 from parsers.skill_extraction_engine import extract_skills
+from parsers.education_parser import parse_education
+from parsers.education_relevance import calculate_education_relevance
 
 from pypdf import PdfReader
 from docx import Document
@@ -222,10 +224,24 @@ def extract_resume(
     # Step 8: Add normalized and scored skills.
     result["extracted_skills"] = skills
 
-    # Step 9: Add structured experience.
+    # Step 9: Extract education and certifications.
+    education_data = parse_education(
+    result["cleaned_text"],
+    candidate_id=candidate_id
+)
+
+    result["education"] = education_data["education"]
+    result["certifications"] = education_data["certifications"]
+    result["education_relevance"] = {
+    "score": 0.0,
+    "matched_education": [],
+    "matched_certifications": []
+}
+
+    # Step 10: Add structured experience.
     result["experience"] = experience
 
-    # Step 10: Create output directory.
+    # Step 11: Create output directory.
     output_path = Path(output_dir)
 
     output_path.mkdir(
