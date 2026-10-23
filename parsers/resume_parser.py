@@ -1,7 +1,7 @@
 import re
 import json
 from pathlib import Path
-
+from parsers.experience_parser import parse_experience
 from parsers.resume_section_classifier import segment_resume
 from parsers.skill_extraction_engine import extract_skills
 
@@ -13,6 +13,23 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
+
+def get_candidate_id(file_path):
+    """Generate a stable candidate ID from the resume filename."""
+
+    file_name = Path(file_path).stem.lower()
+
+    match = re.search(
+        r"resume[_-]?(\d+)",
+        file_name
+    )
+
+    if match:
+        number = int(match.group(1))
+        return f"CAND-{number:03d}"
+
+    # Fallback for test or custom filenames.
+    return "CAND-001"
 
 def extract_pdf_text(file_path):
     """Extract text from a text-based PDF resume."""
@@ -132,7 +149,7 @@ def extract_resume(
     output_dir="data/extracted_resumes"
 ):
     """
-    Extract, clean, segment, extract skills,
+    Extract, clean, segment, extract skills and experience,
     and save structured resume data.
     """
 
@@ -145,7 +162,10 @@ def extract_resume(
 
     extension = file_path.suffix.lower()
 
-    # Step 1: Extract raw text from the resume.
+    # Step 1: Get a stable candidate ID.
+    candidate_id = get_candidate_id(file_path)
+
+    # Step 2: Extract raw text from the resume.
     if extension == ".pdf":
         raw_text = extract_pdf_text(file_path)
 
@@ -157,29 +177,55 @@ def extract_resume(
             "Unsupported file type. Use PDF or DOCX."
         )
 
-    # Step 2: Clean the extracted resume text.
+    # Step 3: Clean the extracted resume text.
     result = parse_resume_text(raw_text)
 
-    # Step 3: Detect and separate resume sections.
+    # Step 4: Detect and separate resume sections.
     sections = segment_resume(
         result["cleaned_text"]
     )
 
-    # Step 4: Extract skills from the Skills section.
-    skills_text = sections.get("skills", "")
+    # Step 5: Extract skills from the Skills section.
+    skills_text = sections.get(
+        "skills",
+        ""
+    )
 
     if skills_text.strip():
         skills = extract_skills(skills_text)
     else:
         skills = []
 
-    # Step 5: Add structured sections to the result.
+    # Step 6: Extract and structure work experience.
+    experience_text = sections.get(
+        "work_experience",
+        ""
+    )
+
+    if experience_text.strip():
+        experience = parse_experience(
+            experience_text,
+            candidate_id=candidate_id
+        )
+    else:
+        experience = {
+            "candidate_id": candidate_id,
+            "experiences": [],
+            "total_experience_months": 0,
+            "gaps": [],
+            "overlaps": []
+        }
+
+    # Step 7: Add structured sections.
     result["sections"] = sections
 
-    # Step 6: Add normalized and scored skills.
+    # Step 8: Add normalized and scored skills.
     result["extracted_skills"] = skills
 
-    # Step 7: Create output directory if it does not exist.
+    # Step 9: Add structured experience.
+    result["experience"] = experience
+
+    # Step 10: Create output directory.
     output_path = Path(output_dir)
 
     output_path.mkdir(
@@ -187,13 +233,13 @@ def extract_resume(
         exist_ok=True
     )
 
-    # Step 8: Create output JSON filename.
+    # Step 11: Create output JSON filename.
     output_file = (
         output_path /
         f"{file_path.stem}.json"
     )
 
-    # Step 9: Save the complete structured result.
+    # Step 12: Save complete structured result.
     with open(
         output_file,
         "w",
@@ -202,6 +248,7 @@ def extract_resume(
 
         json.dump(
             {
+                "candidate_id": candidate_id,
                 "source_file": file_path.name,
                 **result
             },
@@ -215,4 +262,7 @@ def extract_resume(
         output_file
     )
 
-    return result
+    return {
+        "candidate_id": candidate_id,
+        **result
+    }
