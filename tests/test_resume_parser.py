@@ -125,3 +125,48 @@ def test_resume_extraction_contains_sections(tmp_path):
 
     assert "Python" in sections["skills"]
     assert "B.Tech Computer Science" in sections["education"]
+
+
+def test_noisy_resume_text_cleanup():
+    text = """
+    
+    
+    ANAMIKA SREECHITH    
+    
+    
+    Python     SQL       Power BI
+    
+    
+    • Data Analysis
+    ● Machine Learning
+    ▪ Deep Learning
+    
+    
+    
+    """
+
+    cleaned = clean_resume_text(text)
+
+    assert "ANAMIKA SREECHITH" in cleaned
+    assert "Python SQL Power BI" in cleaned
+    assert "- Data Analysis" in cleaned
+    assert "- Machine Learning" in cleaned
+    assert "- Deep Learning" in cleaned
+
+
+def test_control_characters_are_removed():
+    text = "Python\x00\x01 SQL\x02 Power BI"
+
+    cleaned = clean_resume_text(text)
+
+    assert "\x00" not in cleaned
+    assert "\x01" not in cleaned
+    assert "\x02" not in cleaned
+
+
+def test_multiple_blank_lines_are_reduced():
+    text = "Skills\n\n\n\n\nPython\n\n\nSQL"
+
+    cleaned = clean_resume_text(text)
+
+    assert cleaned == "Skills\n\nPython\n\nSQL"
