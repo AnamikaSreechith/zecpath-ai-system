@@ -1,25 +1,28 @@
+
+from functools import lru_cache
+
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-# Load the semantic embedding model
+# Load the semantic embedding model once.
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
+@lru_cache(maxsize=512)
 def generate_embedding(text):
     """
-    Convert text into a semantic embedding.
+    Generate and cache embeddings for repeated text.
+    Reusing cached embeddings avoids repeated model inference.
     """
 
     if not text or not text.strip():
         return None
 
-    embedding = model.encode(
+    return model.encode(
         text,
         convert_to_numpy=True
     )
-
-    return embedding
 
 
 def calculate_similarity(text1, text2):
@@ -48,7 +51,7 @@ def calculate_section_similarity(
 ):
     """
     Calculate semantic similarity between
-    a resume section and corresponding JD section.
+    a resume section and its corresponding JD section.
     """
 
     if not resume_section or not jd_section:
