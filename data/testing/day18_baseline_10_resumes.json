@@ -1,0 +1,17 @@
+{
+    "benchmark": "Day 18 Baseline",
+    "resume_count": 2,
+    "successful_count": 2,
+    "runs_per_resume": 3,
+    "results": [
+        {
+            "resume": "resume1.pdf",
+            "median_processing_seconds": 0.022747
+        },
+        {
+            "resume": "test_resume.pdf",
+            "median_processing_seconds": 0.007326
+        }
+    ],
+    "average_processing_seconds": 0.015036
+}

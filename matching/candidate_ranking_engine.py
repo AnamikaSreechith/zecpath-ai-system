@@ -1,3 +1,7 @@
+
+from heapq import nlargest
+
+
 DEFAULT_SHORTLIST_THRESHOLD = 80
 DEFAULT_REVIEW_THRESHOLD = 50
 
@@ -22,7 +26,9 @@ def validate_candidate(candidate):
         raise ValueError("Candidate score must be numeric.")
 
     if score < 0 or score > 100:
-        raise ValueError("Candidate score must be between 0 and 100.")
+        raise ValueError(
+            "Candidate score must be between 0 and 100."
+        )
 
     return True
 
@@ -49,8 +55,7 @@ def rank_candidates(candidates):
     """
     Rank candidates based on their ATS score.
 
-    Candidates are sorted from highest score
-    to lowest score.
+    Candidates are sorted from highest score to lowest score.
     """
 
     if not candidates:
@@ -72,12 +77,9 @@ def rank_candidates(candidates):
         start=1
     ):
         ranked_candidate = candidate.copy()
-
         ranked_candidate["rank"] = rank
 
-        ranked_candidates.append(
-            ranked_candidate
-        )
+        ranked_candidates.append(ranked_candidate)
 
     return ranked_candidates
 
@@ -92,31 +94,22 @@ def shortlist_candidates(
     to a recruitment decision zone.
     """
 
-    ranked_candidates = rank_candidates(
-        candidates
-    )
+    ranked_candidates = rank_candidates(candidates)
 
     results = []
 
     for candidate in ranked_candidates:
-
-        score = float(
-            candidate["score"]
-        )
+        score = float(candidate["score"])
 
         candidate_result = candidate.copy()
 
-        candidate_result["status"] = (
-            classify_candidate_status(
-                score,
-                shortlist_threshold,
-                review_threshold
-            )
+        candidate_result["status"] = classify_candidate_status(
+            score,
+            shortlist_threshold,
+            review_threshold
         )
 
-        results.append(
-            candidate_result
-        )
+        results.append(candidate_result)
 
     return results
 
@@ -126,17 +119,42 @@ def get_top_candidates(
     limit=5
 ):
     """
-    Return the top N candidates based on ATS score.
+    Return the top N candidates without fully sorting
+    the entire list when only a small number are needed.
+
+    Uses heap-based selection for improved efficiency when
+    limit is much smaller than the total candidate count.
     """
 
-    if limit <= 0:
+    if limit <= 0 or not candidates:
         return []
 
-    ranked_candidates = rank_candidates(
-        candidates
+    # Validate all candidates, preserving existing validation.
+    for candidate in candidates:
+        validate_candidate(candidate)
+
+    # Avoid requesting more candidates than are available.
+    limit = min(limit, len(candidates))
+
+    # Select only the highest-scoring candidates.
+    top_candidates = nlargest(
+        limit,
+        candidates,
+        key=lambda candidate: float(candidate["score"])
     )
 
-    return ranked_candidates[:limit]
+    ranked_candidates = []
+
+    for rank, candidate in enumerate(
+        top_candidates,
+        start=1
+    ):
+        ranked_candidate = candidate.copy()
+        ranked_candidate["rank"] = rank
+
+        ranked_candidates.append(ranked_candidate)
+
+    return ranked_candidates
 
 
 def get_shortlisted_candidates(

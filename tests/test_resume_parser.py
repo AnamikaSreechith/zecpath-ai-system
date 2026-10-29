@@ -9,6 +9,10 @@ from parsers.resume_parser import (
 )
 
 
+# ============================================================
+# BASIC RESUME TEXT TESTS
+# ============================================================
+
 def test_valid_resume_text():
     result = parse_resume_text(
         "Python developer with SQL skills"
@@ -29,6 +33,10 @@ def test_whitespace_resume_text():
         parse_resume_text("   ")
 
 
+# ============================================================
+# RESUME TEXT CLEANING TESTS
+# ============================================================
+
 def test_bullet_normalization():
     text = "Skills\n• Python\n● SQL\n▪ Git"
 
@@ -43,88 +51,6 @@ def test_whitespace_cleanup():
     cleaned = clean_resume_text(text)
 
     assert cleaned == "Python Developer\n\nSQL Analyst"
-
-
-def test_extract_resume_missing_file(tmp_path):
-    missing_file = tmp_path / "missing.pdf"
-
-    with pytest.raises(FileNotFoundError):
-        extract_resume(missing_file)
-
-
-def test_extract_resume_unsupported_format(tmp_path):
-    unsupported_file = tmp_path / "resume.txt"
-    unsupported_file.write_text(
-        "Sample resume",
-        encoding="utf-8"
-    )
-
-    with pytest.raises(ValueError, match="Unsupported file type"):
-        extract_resume(unsupported_file)
-
-
-def test_extract_resume_saves_json(tmp_path, monkeypatch):
-    from parsers import resume_parser
-
-    # Simulate text extracted from a PDF.
-    monkeypatch.setattr(
-        resume_parser,
-        "extract_pdf_text",
-        lambda file_path: "Python Developer\n• SQL"
-    )
-
-    pdf_file = tmp_path / "resume.pdf"
-    pdf_file.touch()
-
-    output_dir = tmp_path / "output"
-
-    result = extract_resume(
-        pdf_file,
-        output_dir=str(output_dir)
-    )
-
-    output_file = output_dir / "resume.json"
-
-    assert output_file.exists()
-    assert result["status"] == "processed"
-
-    with open(output_file, "r", encoding="utf-8") as file:
-        saved_data = json.load(file)
-
-    assert saved_data["source_file"] == "resume.pdf"
-    assert saved_data["cleaned_text"] == "Python Developer\n- SQL"
-
-def test_resume_extraction_contains_sections(tmp_path):
-    resume_text = """
-    ANAMIKA TEST RESUME
-
-    Skills
-    Python
-    SQL
-
-    Education
-    B.Tech Computer Science
-
-    Experience
-    Python Developer Intern
-
-    Projects
-    Resume Parser
-    """
-
-    result = parse_resume_text(resume_text)
-
-    from parsers.resume_section_classifier import segment_resume
-
-    sections = segment_resume(result["cleaned_text"])
-
-    assert "skills" in sections
-    assert "education" in sections
-    assert "work_experience" in sections
-    assert "projects" in sections
-
-    assert "Python" in sections["skills"]
-    assert "B.Tech Computer Science" in sections["education"]
 
 
 def test_noisy_resume_text_cleanup():
@@ -170,3 +96,149 @@ def test_multiple_blank_lines_are_reduced():
     cleaned = clean_resume_text(text)
 
     assert cleaned == "Skills\n\nPython\n\nSQL"
+
+
+# ============================================================
+# RESUME FILE VALIDATION TESTS
+# ============================================================
+
+def test_extract_resume_missing_file(tmp_path):
+    missing_file = tmp_path / "missing.pdf"
+
+    with pytest.raises(FileNotFoundError):
+        extract_resume(missing_file)
+
+
+def test_extract_resume_unsupported_format(tmp_path):
+    unsupported_file = tmp_path / "resume.txt"
+
+    unsupported_file.write_text(
+        "Sample resume",
+        encoding="utf-8"
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Unsupported file type"
+    ):
+        extract_resume(unsupported_file)
+
+
+def test_extract_resume_empty_pdf_fails_safely(tmp_path):
+    pdf_file = tmp_path / "empty.pdf"
+    pdf_file.touch()
+
+    with pytest.raises(ValueError):
+        extract_resume(
+            pdf_file,
+            output_dir=str(tmp_path / "output")
+        )
+
+
+def test_extract_resume_corrupt_pdf_fails_safely(tmp_path):
+    pdf_file = tmp_path / "corrupt.pdf"
+
+    pdf_file.write_bytes(
+        b"This is not a valid PDF file."
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Unable to read PDF resume"
+    ):
+        extract_resume(
+            pdf_file,
+            output_dir=str(tmp_path / "output")
+        )
+
+
+def test_extract_resume_corrupt_docx_fails_safely(tmp_path):
+    docx_file = tmp_path / "corrupt.docx"
+
+    docx_file.write_bytes(
+        b"This is not a valid DOCX file."
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Unable to read DOCX resume"
+    ):
+        extract_resume(
+            docx_file,
+            output_dir=str(tmp_path / "output")
+        )
+
+
+# ============================================================
+# STRUCTURED RESUME OUTPUT TESTS
+# ============================================================
+
+def test_extract_resume_saves_json(tmp_path, monkeypatch):
+    from parsers import resume_parser
+
+    # Simulate text extracted from a PDF.
+    monkeypatch.setattr(
+        resume_parser,
+        "extract_pdf_text",
+        lambda file_path: "Python Developer\n• SQL"
+    )
+
+    pdf_file = tmp_path / "resume.pdf"
+    pdf_file.touch()
+
+    output_dir = tmp_path / "output"
+
+    result = extract_resume(
+        pdf_file,
+        output_dir=str(output_dir)
+    )
+
+    output_file = output_dir / "resume.json"
+
+    assert output_file.exists()
+    assert result["status"] == "processed"
+
+    with open(
+        output_file,
+        "r",
+        encoding="utf-8"
+    ) as file:
+        saved_data = json.load(file)
+
+    assert saved_data["source_file"] == "resume.pdf"
+    assert saved_data["cleaned_text"] == "Python Developer\n- SQL"
+
+
+def test_resume_extraction_contains_sections(tmp_path):
+    resume_text = """
+    ANAMIKA TEST RESUME
+
+    Skills
+    Python
+    SQL
+
+    Education
+    B.Tech Computer Science
+
+    Experience
+    Python Developer Intern
+
+    Projects
+    Resume Parser
+    """
+
+    result = parse_resume_text(resume_text)
+
+    from parsers.resume_section_classifier import segment_resume
+
+    sections = segment_resume(
+        result["cleaned_text"]
+    )
+
+    assert "skills" in sections
+    assert "education" in sections
+    assert "work_experience" in sections
+    assert "projects" in sections
+
+    assert "Python" in sections["skills"]
+    assert "B.Tech Computer Science" in sections["education"]

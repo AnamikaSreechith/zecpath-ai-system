@@ -1,0 +1,24 @@
+[
+    {
+        "resume": "resume1.pdf",
+        "wall_clock_seconds": 0.028911,
+        "text_extraction_seconds": 0.017656,
+        "text_cleaning_seconds": 0.000886,
+        "section_detection_seconds": 0.000685,
+        "total_processing_seconds": 0.026449,
+        "memory_before_mb": 35.414,
+        "memory_after_mb": 35.875,
+        "memory_used_mb": 0.461
+    },
+    {
+        "resume": "test_resume.pdf",
+        "wall_clock_seconds": 0.00673,
+        "text_extraction_seconds": 0.003311,
+        "text_cleaning_seconds": 0.000269,
+        "section_detection_seconds": 0.000224,
+        "total_processing_seconds": 0.005427,
+        "memory_before_mb": 35.895,
+        "memory_after_mb": 35.922,
+        "memory_used_mb": 0.027
+    }
+]
