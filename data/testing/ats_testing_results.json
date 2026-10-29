@@ -1,0 +1,130 @@
+{
+    "test_summary": {
+        "total_candidates": 10,
+        "accuracy": 100.0,
+        "precision": 100.0,
+        "recall": 100.0,
+        "f1_score": 100.0
+    },
+    "confusion_matrix": {
+        "true_positive": 1,
+        "true_negative": 9,
+        "false_positive": 0,
+        "false_negative": 0
+    },
+    "mismatch_count": 0,
+    "mismatch_cases": [],
+    "coverage": {
+        "ai_results_source": "data\\testing\\day14_candidate_ranking.json",
+        "manual_labels_source": "data\\testing\\ats_test_cases.json",
+        "role_type_distribution": {
+            "tech": 10
+        },
+        "experience_level_distribution": {
+            "fresher": 10
+        },
+        "note": "Metrics measure agreement with the supplied manual labels. They do not establish real-world hiring accuracy."
+    },
+    "candidate_comparison": [
+        {
+            "candidate_id": "CAND001",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 60.28,
+            "ai_status": "Review",
+            "manual_status": "Review",
+            "classification": "True Positive",
+            "manual_reason": "Relevant technical skills and project alignment."
+        },
+        {
+            "candidate_id": "CAND002",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 47.37,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Limited alignment with the Python Developer requirements."
+        },
+        {
+            "candidate_id": "CAND009",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 47.22,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Limited alignment with the technical requirements."
+        },
+        {
+            "candidate_id": "CAND004",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 46.86,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Limited alignment with the Python Developer requirements."
+        },
+        {
+            "candidate_id": "CAND010",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 42.68,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Limited alignment with the technical requirements."
+        },
+        {
+            "candidate_id": "CAND006",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 42.58,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Limited alignment with the technical requirements."
+        },
+        {
+            "candidate_id": "CAND005",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 41.17,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Limited alignment with the technical requirements."
+        },
+        {
+            "candidate_id": "CAND007",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 40.55,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Limited alignment with the technical requirements."
+        },
+        {
+            "candidate_id": "CAND003",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 40.09,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Limited alignment with the technical requirements."
+        },
+        {
+            "candidate_id": "CAND008",
+            "role_type": "tech",
+            "experience_level": "fresher",
+            "ai_score": 28.77,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative",
+            "manual_reason": "Low alignment with the Python Developer requirements."
+        }
+    ]
+}
