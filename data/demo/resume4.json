@@ -1,0 +1,83 @@
+{
+  "candidate_id": "CAND004",
+  "designation": "Cyber Security Fresher",
+  "professional_summary": "Cyber Security fresher with a B.Tech in Computer Science specializing in Cyber Security, with hands-on practice in vulnerability assessment, penetration testing, network security, and security monitoring.",
+  "skills": [
+    {
+      "name": "Vulnerability Assessment",
+      "category": "Cybersecurity"
+    },
+    {
+      "name": "Penetration Testing",
+      "category": "Cybersecurity"
+    },
+    {
+      "name": "Network Security",
+      "category": "Cybersecurity"
+    },
+    {
+      "name": "Nmap",
+      "category": "Security Tools"
+    },
+    {
+      "name": "Burp Suite",
+      "category": "Security Tools"
+    },
+    {
+      "name": "Wireshark",
+      "category": "Security Tools"
+    },
+    {
+      "name": "Metasploit",
+      "category": "Security Tools"
+    },
+    {
+      "name": "Python",
+      "category": "Programming"
+    },
+    {
+      "name": "Bash",
+      "category": "Scripting"
+    },
+    {
+      "name": "SQL",
+      "category": "Database"
+    },
+    {
+      "name": "Kali Linux",
+      "category": "Operating Systems"
+    },
+    {
+      "name": "OWASP Top 10",
+      "category": "Security Standards"
+    },
+    {
+      "name": "MITRE ATT&CK",
+      "category": "Security Frameworks"
+    }
+  ],
+  "experience": [
+    {
+      "designation": "Cyber Security Intern",
+      "company": "SecureNet Labs",
+      "start_date": "2025-12",
+      "end_date": "2026-02"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology",
+      "field": "Computer Science and Engineering - Cyber Security",
+      "institution": "National Institute of Technology and Engineering",
+      "graduation_year": 2026,
+      "grade": "8.5/10 CGPA"
+    }
+  ],
+  "certifications": [
+    "CompTIA Security+ (In Progress)",
+    "Certified in Cybersecurity (CC) - ISC2",
+    "Google Cybersecurity Professional Certificate",
+    "Cisco Networking Academy - Introduction to Cybersecurity",
+    "TryHackMe Pre-Security and Junior Penetration Tester Paths"
+  ]
+}

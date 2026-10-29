@@ -1,0 +1,102 @@
+{
+  "candidate_id": "CAND006",
+  "designation": "HR Recruiter",
+  "professional_summary": "HR Recruitment professional with 1 year of experience in end-to-end recruitment for IT and non-IT roles, candidate screening, interview coordination, and candidate relationship management.",
+  "skills": [
+    {
+      "name": "End-to-End Recruitment",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Talent Sourcing",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Boolean Search",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Resume Screening",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Telephonic Screening",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Interview Scheduling",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Offer Rollout",
+      "category": "Recruitment"
+    },
+    {
+      "name": "Onboarding",
+      "category": "HR Operations"
+    },
+    {
+      "name": "Employee Records",
+      "category": "HR Operations"
+    },
+    {
+      "name": "LinkedIn Recruiter",
+      "category": "Recruitment Tools"
+    },
+    {
+      "name": "Naukri RMS",
+      "category": "Recruitment Tools"
+    },
+    {
+      "name": "Zoho Recruit",
+      "category": "Recruitment Tools"
+    },
+    {
+      "name": "Microsoft Excel",
+      "category": "Productivity"
+    },
+    {
+      "name": "Communication",
+      "category": "Soft Skills"
+    },
+    {
+      "name": "Negotiation",
+      "category": "Soft Skills"
+    }
+  ],
+  "experience": [
+    {
+      "designation": "HR Recruiter",
+      "company": "TalentBridge Consulting Pvt. Ltd.",
+      "start_date": "2025-07",
+      "end_date": null
+    },
+    {
+      "designation": "HR Intern",
+      "company": "Sunrise Software Solutions",
+      "start_date": "2025-01",
+      "end_date": "2025-06"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Business Administration",
+      "field": "Human Resource Management",
+      "institution": "Loyola Institute of Business Administration",
+      "graduation_year": 2025,
+      "grade": "8.0/10 CGPA"
+    },
+    {
+      "degree": "Bachelor of Business Administration",
+      "field": "Business Administration",
+      "institution": "Stella Maris College",
+      "graduation_year": 2023,
+      "grade": "78%"
+    }
+  ],
+  "certifications": [
+    "Talent Acquisition Fundamentals - LinkedIn Learning",
+    "HR Analytics Basics - Coursera",
+    "Excel for HR Professionals - Udemy"
+  ]
+}

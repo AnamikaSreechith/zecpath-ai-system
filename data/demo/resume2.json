@@ -1,0 +1,96 @@
+{
+  "candidate_id": "CAND002",
+  "designation": "Web Developer",
+  "professional_summary": "Web Developer with 2 years of experience building responsive web applications using React, Next.js, Node.js, and modern CSS.",
+  "skills": [
+    {
+      "name": "JavaScript",
+      "category": "Programming"
+    },
+    {
+      "name": "TypeScript",
+      "category": "Programming"
+    },
+    {
+      "name": "React.js",
+      "category": "Frontend"
+    },
+    {
+      "name": "Next.js",
+      "category": "Frontend"
+    },
+    {
+      "name": "HTML5",
+      "category": "Frontend"
+    },
+    {
+      "name": "CSS3",
+      "category": "Frontend"
+    },
+    {
+      "name": "Node.js",
+      "category": "Backend"
+    },
+    {
+      "name": "Express.js",
+      "category": "Backend"
+    },
+    {
+      "name": "REST APIs",
+      "category": "API"
+    },
+    {
+      "name": "GraphQL",
+      "category": "API"
+    },
+    {
+      "name": "MongoDB",
+      "category": "Database"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Database"
+    },
+    {
+      "name": "Jest",
+      "category": "Testing"
+    },
+    {
+      "name": "Cypress",
+      "category": "Testing"
+    },
+    {
+      "name": "SEO",
+      "category": "Digital"
+    }
+  ],
+  "experience": [
+    {
+      "designation": "Web Developer",
+      "company": "PixelCraft Digital Solutions",
+      "start_date": "2024-07",
+      "end_date": null
+    },
+    {
+      "designation": "Junior Web Developer",
+      "company": "Brightline Web Studio",
+      "start_date": "2023-07",
+      "end_date": "2024-06"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Computer Applications",
+      "field": "Computer Applications",
+      "institution": "Christ College",
+      "graduation_year": 2023,
+      "grade": "8.7/10 CGPA"
+    }
+  ],
+  "certifications": [
+    "Meta Front-End Developer Professional Certificate",
+    "freeCodeCamp Responsive Web Design",
+    "JavaScript Algorithms and Data Structures",
+    "Google UX Design Foundations"
+  ]
+}

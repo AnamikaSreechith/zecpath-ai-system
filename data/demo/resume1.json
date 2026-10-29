@@ -1,0 +1,84 @@
+{
+  "candidate_id": "CAND001",
+  "designation": "Software Engineer",
+  "professional_summary": "Software Engineer with a B.Tech in Computer Science and experience in backend services, REST APIs, and full-stack applications.",
+  "skills": [
+    {
+      "name": "Java",
+      "category": "Programming"
+    },
+    {
+      "name": "JavaScript",
+      "category": "Programming"
+    },
+    {
+      "name": "TypeScript",
+      "category": "Programming"
+    },
+    {
+      "name": "C++",
+      "category": "Programming"
+    },
+    {
+      "name": "SQL",
+      "category": "Database"
+    },
+    {
+      "name": "Spring Boot",
+      "category": "Backend"
+    },
+    {
+      "name": "Node.js",
+      "category": "Backend"
+    },
+    {
+      "name": "React.js",
+      "category": "Frontend"
+    },
+    {
+      "name": "MySQL",
+      "category": "Database"
+    },
+    {
+      "name": "MongoDB",
+      "category": "Database"
+    },
+    {
+      "name": "Docker",
+      "category": "DevOps"
+    },
+    {
+      "name": "AWS",
+      "category": "Cloud"
+    }
+  ],
+  "experience": [
+    {
+      "designation": "Software Engineering Intern",
+      "company": "Nimbus Softworks Pvt. Ltd.",
+      "start_date": "2026-01",
+      "end_date": "2026-06"
+    },
+    {
+      "designation": "Web Development Intern",
+      "company": "BrightPath Technologies",
+      "start_date": "2025-06",
+      "end_date": "2025-08"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology",
+      "field": "Computer Science and Engineering",
+      "institution": "Rajagiri Institute of Technology",
+      "graduation_year": 2026,
+      "grade": "8.4/10 CGPA"
+    }
+  ],
+  "certifications": [
+    "Oracle Certified Foundations Associate, Java",
+    "AWS Cloud Practitioner Essentials",
+    "Meta Front-End Developer",
+    "Data Structures and Algorithms Specialization"
+  ]
+}
