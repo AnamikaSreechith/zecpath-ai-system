@@ -1,107 +1,87 @@
 from pydantic import BaseModel, Field
-from typing import List
+from typing import Any
 
 
-# ============================================================
-# RESUME UPLOAD
-# ============================================================
+# --------------------------------------------------
+# RESUME PROCESSING
+# --------------------------------------------------
 
-class ResumeUploadResponse(BaseModel):
-    message: str
-    filename: str
-    status: str
-    file_size_bytes: int
-    saved_path: str
+class ResumeProcessRequest(BaseModel):
+    resume_id: str
+    job_id: str
 
 
-# ============================================================
+# --------------------------------------------------
 # RESUME PARSING
-# ============================================================
+# --------------------------------------------------
 
 class ParseRequest(BaseModel):
-    text: str = Field(
-        ...,
-        min_length=1,
-        description="Raw resume text to be parsed."
-    )
+    resume_id: str
+    job_id: str
+
+
+class WorkExperience(BaseModel):
+    company: str | None = None
+    job_title: str | None = None
+    designation: str | None = None
+    start_date: str | None = None
+    end_date: str | None = None
+    duration_months: int | None = None
 
 
 class ParseResponse(BaseModel):
+    resume_id: str
+    candidate_id: str
+    job_id: str
+
+    personal_details: dict[str, Any] = Field(default_factory=dict)
+
+    technical_skills: list[str] = Field(default_factory=list)
+    non_technical_skills: list[str] = Field(default_factory=list)
+
+    work_experience: list[dict[str, Any]] = Field(default_factory=list)
+
+    education: list[dict[str, Any]] = Field(default_factory=list)
+
+    achievements: list[str] = Field(default_factory=list)
+
+    matched_skills: list[str] = Field(default_factory=list)
+    missing_required_skills: list[str] = Field(default_factory=list)
+
     status: str
-    raw_text: str
 
 
-# ============================================================
-# ATS SCORING
-# ============================================================
+# --------------------------------------------------
+# CANDIDATE SCORING
+# --------------------------------------------------
 
-class ScoreRequest(BaseModel):
-    skill_match: float = Field(
-        ...,
-        ge=0.0,
-        le=1.0,
-        description="Skill matching score between 0 and 1."
-    )
-
-    experience_relevance: float = Field(
-        ...,
-        ge=0.0,
-        le=1.0,
-        description="Experience relevance score between 0 and 1."
-    )
-
-    education_alignment: float = Field(
-        ...,
-        ge=0.0,
-        le=1.0,
-        description="Education alignment score between 0 and 1."
-    )
-
-    semantic_similarity: float = Field(
-        ...,
-        ge=0.0,
-        le=1.0,
-        description="Semantic similarity score between 0 and 1."
-    )
+class CandidateScoreRequest(BaseModel):
+    candidate_id: str
+    job_id: str
 
 
-class ScoreResponse(BaseModel):
-    final_score: float
+class CandidateScoreResponse(BaseModel):
+    candidate_id: str
+    job_id: str
+
+    score: float
     match_level: str
-    score_breakdown: dict
-    weights: dict
+
+    score_breakdown: dict[str, Any] = Field(default_factory=dict)
+
+    status: str
 
 
-# ============================================================
-# CANDIDATE
-# ============================================================
-
-class Candidate(BaseModel):
-    candidate_id: str = Field(
-        ...,
-        min_length=1,
-        description="Unique candidate identifier."
-    )
-
-    score: float = Field(
-        ...,
-        ge=0.0,
-        le=100.0,
-        description="Final ATS score between 0 and 100."
-    )
-
-
-# ============================================================
-# SHORTLISTING
-# ============================================================
+# --------------------------------------------------
+# CANDIDATE SHORTLISTING
+# --------------------------------------------------
 
 class ShortlistRequest(BaseModel):
-    candidates: List[Candidate] = Field(
-        ...,
-        min_length=1,
-        description="List of candidates to rank and shortlist."
-    )
+    candidate_id: str
+    job_id: str
 
 
 class ShortlistResponse(BaseModel):
-    results: list
+    candidate_id: str
+    score: float
+    status: str
