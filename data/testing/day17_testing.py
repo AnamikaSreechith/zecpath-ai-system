@@ -1,33 +1,32 @@
-
+import csv
 import json
 from pathlib import Path
-from collections import Counter
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 
-AI_RESULTS_FILE = (
-    BASE_DIR / "data" / "testing" / "day14_candidate_ranking.json"
-)
-MANUAL_REVIEW_FILE = (
-    BASE_DIR / "data" / "testing" / "ats_test_cases.json"
+CSV_EVAL_FILE = (
+    BASE_DIR / "data" / "testing" / "day17_candidate_job_evaluation.csv"
 )
 OUTPUT_FILE = (
     BASE_DIR / "data" / "testing" / "ats_testing_results.json"
 )
 
+# Ground truth expected suitable pairings across the 50 candidate-job pairs
+EXPECTED_SUITABLE_PAIRS = {
+    ("CAND001", "JOB001"),  # Software Eng -> Python Dev
+    ("CAND001", "JOB005"),  # Software Eng -> Java Dev
+    ("CAND006", "JOB002"),  # HR Recruiter -> HR Recruiter
+    ("CAND010", "JOB002"),  # HR Recruiter -> HR Recruiter
+    ("CAND007", "JOB003"),  # Data Analyst -> Data Analyst
+    ("CAND009", "JOB004"),  # AI/ML Engineer -> ML Engineer
+    ("CAND009", "JOB001"),  # AI/ML Engineer -> Python Dev (Secondary fit)
+}
 
-def load_json(file_path):
-    """Load JSON data and report a clear error if it is unavailable."""
-    if not file_path.exists():
-        raise FileNotFoundError(f"Required file not found: {file_path}")
-
-    with file_path.open("r", encoding="utf-8") as file:
-        return json.load(file)
+POSITIVE_STATUSES = {"Review", "Shortlisted", "Moderate Match", "Good Match"}
 
 
 def calculate_metrics(tp, tn, fp, fn):
     total = tp + tn + fp + fn
-
     accuracy = (tp + tn) / total if total else 0
     precision = tp / (tp + fp) if (tp + fp) else 0
     recall = tp / (tp + fn) if (tp + fn) else 0
@@ -36,9 +35,8 @@ def calculate_metrics(tp, tn, fp, fn):
         if (precision + recall)
         else 0
     )
-
     return {
-        "total_candidates": total,
+        "total_evaluations": total,
         "accuracy": round(accuracy * 100, 2),
         "precision": round(precision * 100, 2),
         "recall": round(recall * 100, 2),
@@ -47,58 +45,39 @@ def calculate_metrics(tp, tn, fp, fn):
 
 
 def main():
-    ai_results = load_json(AI_RESULTS_FILE)
-    manual_reviews = load_json(MANUAL_REVIEW_FILE)
+    if not CSV_EVAL_FILE.exists():
+        raise FileNotFoundError(f"Required CSV evaluation file not found: {CSV_EVAL_FILE}")
 
-    # Build lookup tables and detect duplicate IDs.
-    ai_ids = [item["candidate_id"] for item in ai_results]
-    manual_ids = [item["candidate_id"] for item in manual_reviews]
-
-    if len(ai_ids) != len(set(ai_ids)):
-        raise ValueError("Duplicate candidate IDs found in Day 14 results.")
-
-    if len(manual_ids) != len(set(manual_ids)):
-        raise ValueError("Duplicate candidate IDs found in manual test cases.")
-
-    ai_lookup = {item["candidate_id"]: item for item in ai_results}
-    manual_lookup = {item["candidate_id"]: item for item in manual_reviews}
-
-    ai_only = sorted(set(ai_lookup) - set(manual_lookup))
-    manual_only = sorted(set(manual_lookup) - set(ai_lookup))
-
-    if ai_only or manual_only:
-        raise ValueError(
-            "Candidate ID mismatch.\n"
-            f"AI-only candidates: {ai_only}\n"
-            f"Manual-only candidates: {manual_only}"
-        )
+    evaluations = []
+    with CSV_EVAL_FILE.open("r", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for raw_row in reader:
+            row = {
+                k.strip(): (v.strip() if v else "")
+                for k, v in raw_row.items()
+                if k is not None
+            }
+            if row.get("candidate_id") and row.get("job_id"):
+                evaluations.append(row)
 
     tp = tn = fp = fn = 0
     comparisons = []
     mismatches = []
+    job_metrics = {}
 
-    # Positive means Review; negative means Rejected.
-    positive_statuses = {"Review", "Shortlisted"}
+    for row in evaluations:
+        cand_id = row["candidate_id"]
+        job_id = row["job_id"]
+        job_title = row.get("job_title", job_id)
+        ai_score = float(row.get("ats_score", 0))
+        ai_status = row.get("ats_status", "Rejected")
 
-    for candidate_id, ai in ai_lookup.items():
-        manual = manual_lookup[candidate_id]
+        # Determine ground truth status
+        is_ground_truth_suitable = (cand_id, job_id) in EXPECTED_SUITABLE_PAIRS
+        manual_decision = "Review" if is_ground_truth_suitable else "Rejected"
 
-        ai_status = ai["status"]
-        manual_status = manual["manual_decision"]
-
-        if ai_status not in positive_statuses | {"Rejected"}:
-            raise ValueError(
-                f"Unexpected AI status for {candidate_id}: {ai_status}"
-            )
-
-        if manual_status not in positive_statuses | {"Rejected"}:
-            raise ValueError(
-                f"Unexpected manual decision for {candidate_id}: "
-                f"{manual_status}"
-            )
-
-        ai_positive = ai_status in positive_statuses
-        manual_positive = manual_status in positive_statuses
+        ai_positive = ai_status in POSITIVE_STATUSES
+        manual_positive = is_ground_truth_suitable
 
         if ai_positive and manual_positive:
             classification = "True Positive"
@@ -113,38 +92,25 @@ def main():
             classification = "False Negative"
             fn += 1
 
-        comparison = {
-            "candidate_id": candidate_id,
-            "role_type": manual.get("role_type", "Not specified"),
-            "experience_level": manual.get(
-                "experience_level", "Not specified"
-            ),
-            "ai_score": ai["score"],
+        comp = {
+            "candidate_id": cand_id,
+            "job_id": job_id,
+            "job_title": job_title,
+            "designation": row.get("resume_designation", ""),
+            "ai_score": ai_score,
             "ai_status": ai_status,
-            "manual_status": manual_status,
+            "manual_status": manual_decision,
             "classification": classification,
-            "manual_reason": manual.get("reason", "")
         }
+        comparisons.append(comp)
 
-        comparisons.append(comparison)
+        if ai_positive != manual_positive:
+            mismatches.append(comp)
 
-        if ai_status != manual_status:
-            mismatches.append(comparison)
-
-    metrics = calculate_metrics(tp, tn, fp, fn)
-
-    # Report how many test examples belong to each category.
-    role_distribution = dict(
-        Counter(item.get("role_type", "Not specified")
-                for item in manual_reviews)
-    )
-    experience_distribution = dict(
-        Counter(item.get("experience_level", "Not specified")
-                for item in manual_reviews)
-    )
+    overall_metrics = calculate_metrics(tp, tn, fp, fn)
 
     results = {
-        "test_summary": metrics,
+        "overall_summary": overall_metrics,
         "confusion_matrix": {
             "true_positive": tp,
             "true_negative": tn,
@@ -153,34 +119,28 @@ def main():
         },
         "mismatch_count": len(mismatches),
         "mismatch_cases": mismatches,
-        "coverage": {
-            "ai_results_source": str(AI_RESULTS_FILE.relative_to(BASE_DIR)),
-            "manual_labels_source": str(
-                MANUAL_REVIEW_FILE.relative_to(BASE_DIR)
-            ),
-            "role_type_distribution": role_distribution,
-            "experience_level_distribution": experience_distribution,
-            "note": (
-                "Metrics measure agreement with the supplied manual labels. "
-                "They do not establish real-world hiring accuracy."
-            )
-        },
-        "candidate_comparison": comparisons
+        "all_evaluations": comparisons
     }
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-
     with OUTPUT_FILE.open("w", encoding="utf-8") as file:
         json.dump(results, file, indent=4)
 
-    print("Day 17 ATS testing completed.")
-    print(f"Candidates evaluated: {metrics['total_candidates']}")
-    print(f"Accuracy: {metrics['accuracy']}%")
-    print(f"Precision: {metrics['precision']}%")
-    print(f"Recall: {metrics['recall']}%")
-    print(f"F1-score: {metrics['f1_score']}%")
-    print(f"Mismatches: {len(mismatches)}")
-    print(f"Results saved to: {OUTPUT_FILE}")
+    print("==================================================")
+    print("Day 17 ATS Full Matrix Testing (All 50 Pairs)")
+    print("==================================================")
+    print(f"Total Evaluations: {overall_metrics['total_evaluations']}")
+    print(f"Accuracy:  {overall_metrics['accuracy']}%")
+    print(f"Precision: {overall_metrics['precision']}%")
+    print(f"Recall:    {overall_metrics['recall']}%")
+    print(f"F1-score:  {overall_metrics['f1_score']}%")
+    print(f"Total Mismatches Found: {len(mismatches)}")
+    print("--------------------------------------------------")
+    print("Mismatch Cases Breakdown:")
+    for m in mismatches:
+        print(f"  [{m['job_title']}] {m['candidate_id']} ({m['designation']}): AI gave {m['ai_status']} ({m['ai_score']}%), Expected {m['manual_status']} -> {m['classification']}")
+    print("--------------------------------------------------")
+    print(f"Detailed output saved to: {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":

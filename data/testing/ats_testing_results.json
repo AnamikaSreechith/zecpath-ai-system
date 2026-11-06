@@ -1,130 +1,640 @@
 {
-    "test_summary": {
-        "total_candidates": 10,
-        "accuracy": 100.0,
-        "precision": 100.0,
-        "recall": 100.0,
-        "f1_score": 100.0
+    "overall_summary": {
+        "total_evaluations": 50,
+        "accuracy": 76.0,
+        "precision": 30.77,
+        "recall": 57.14,
+        "f1_score": 40.0
     },
     "confusion_matrix": {
-        "true_positive": 1,
-        "true_negative": 9,
-        "false_positive": 0,
-        "false_negative": 0
+        "true_positive": 4,
+        "true_negative": 34,
+        "false_positive": 9,
+        "false_negative": 3
     },
-    "mismatch_count": 0,
-    "mismatch_cases": [],
-    "coverage": {
-        "ai_results_source": "data\\testing\\day14_candidate_ranking.json",
-        "manual_labels_source": "data\\testing\\ats_test_cases.json",
-        "role_type_distribution": {
-            "tech": 10
-        },
-        "experience_level_distribution": {
-            "fresher": 10
-        },
-        "note": "Metrics measure agreement with the supplied manual labels. They do not establish real-world hiring accuracy."
-    },
-    "candidate_comparison": [
-        {
-            "candidate_id": "CAND001",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 60.28,
-            "ai_status": "Review",
-            "manual_status": "Review",
-            "classification": "True Positive",
-            "manual_reason": "Relevant technical skills and project alignment."
-        },
+    "mismatch_count": 12,
+    "mismatch_cases": [
         {
             "candidate_id": "CAND002",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 47.37,
-            "ai_status": "Rejected",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "Web Developer",
+            "ai_score": 53.94,
+            "ai_status": "Review",
             "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Limited alignment with the Python Developer requirements."
+            "classification": "False Positive"
         },
         {
             "candidate_id": "CAND009",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 47.22,
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 49.76,
             "ai_status": "Rejected",
-            "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Limited alignment with the technical requirements."
+            "manual_status": "Review",
+            "classification": "False Negative"
         },
         {
             "candidate_id": "CAND004",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 46.86,
-            "ai_status": "Rejected",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Cyber Security Fresher",
+            "ai_score": 56.84,
+            "ai_status": "Review",
             "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Limited alignment with the Python Developer requirements."
+            "classification": "False Positive"
         },
         {
-            "candidate_id": "CAND010",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 42.68,
-            "ai_status": "Rejected",
+            "candidate_id": "CAND009",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 55.53,
+            "ai_status": "Review",
             "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Limited alignment with the technical requirements."
-        },
-        {
-            "candidate_id": "CAND006",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 42.58,
-            "ai_status": "Rejected",
-            "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Limited alignment with the technical requirements."
+            "classification": "False Positive"
         },
         {
             "candidate_id": "CAND005",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 41.17,
-            "ai_status": "Rejected",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Project Manager",
+            "ai_score": 50.07,
+            "ai_status": "Review",
             "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Limited alignment with the technical requirements."
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND001",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Software Engineer",
+            "ai_score": 60.17,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND002",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Web Developer",
+            "ai_score": 53.65,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND009",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 37.91,
+            "ai_status": "Rejected",
+            "manual_status": "Review",
+            "classification": "False Negative"
+        },
+        {
+            "candidate_id": "CAND009",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 67.35,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND004",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Cyber Security Fresher",
+            "ai_score": 56.9,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
         },
         {
             "candidate_id": "CAND007",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 40.55,
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Data Analyst Fresher",
+            "ai_score": 50.56,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND001",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Software Engineer",
+            "ai_score": 48.88,
+            "ai_status": "Rejected",
+            "manual_status": "Review",
+            "classification": "False Negative"
+        }
+    ],
+    "all_evaluations": [
+        {
+            "candidate_id": "CAND001",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "Software Engineer",
+            "ai_score": 56.62,
+            "ai_status": "Review",
+            "manual_status": "Review",
+            "classification": "True Positive"
+        },
+        {
+            "candidate_id": "CAND002",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "Web Developer",
+            "ai_score": 53.94,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND009",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 49.76,
+            "ai_status": "Rejected",
+            "manual_status": "Review",
+            "classification": "False Negative"
+        },
+        {
+            "candidate_id": "CAND005",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "Project Manager",
+            "ai_score": 46.98,
             "ai_status": "Rejected",
             "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Limited alignment with the technical requirements."
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND004",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "Cyber Security Fresher",
+            "ai_score": 42.39,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
         },
         {
             "candidate_id": "CAND003",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 40.09,
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "Marketing Executive",
+            "ai_score": 36.84,
             "ai_status": "Rejected",
             "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Limited alignment with the technical requirements."
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND007",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "Data Analyst Fresher",
+            "ai_score": 32.88,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND006",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "HR Recruiter",
+            "ai_score": 24.6,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND010",
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "HR Recruiter",
+            "ai_score": 24.26,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
         },
         {
             "candidate_id": "CAND008",
-            "role_type": "tech",
-            "experience_level": "fresher",
-            "ai_score": 28.77,
+            "job_id": "JOB001",
+            "job_title": "Python Developer",
+            "designation": "Entry-Level Finance / Accounting Professional",
+            "ai_score": 19.71,
             "ai_status": "Rejected",
             "manual_status": "Rejected",
-            "classification": "True Negative",
-            "manual_reason": "Low alignment with the Python Developer requirements."
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND006",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "HR Recruiter",
+            "ai_score": 75.7,
+            "ai_status": "Review",
+            "manual_status": "Review",
+            "classification": "True Positive"
+        },
+        {
+            "candidate_id": "CAND010",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "HR Recruiter",
+            "ai_score": 75.26,
+            "ai_status": "Review",
+            "manual_status": "Review",
+            "classification": "True Positive"
+        },
+        {
+            "candidate_id": "CAND003",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "Marketing Executive",
+            "ai_score": 46.24,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND008",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "Entry-Level Finance / Accounting Professional",
+            "ai_score": 42.19,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND007",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "Data Analyst Fresher",
+            "ai_score": 40.64,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND004",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "Cyber Security Fresher",
+            "ai_score": 38.45,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND005",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "Project Manager",
+            "ai_score": 38.26,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND009",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 37.98,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND001",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "Software Engineer",
+            "ai_score": 37.26,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND002",
+            "job_id": "JOB002",
+            "job_title": "HR Recruiter",
+            "designation": "Web Developer",
+            "ai_score": 37.2,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND007",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Data Analyst Fresher",
+            "ai_score": 75.02,
+            "ai_status": "Review",
+            "manual_status": "Review",
+            "classification": "True Positive"
+        },
+        {
+            "candidate_id": "CAND004",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Cyber Security Fresher",
+            "ai_score": 56.84,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND009",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 55.53,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND005",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Project Manager",
+            "ai_score": 50.07,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND001",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Software Engineer",
+            "ai_score": 49.84,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND002",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Web Developer",
+            "ai_score": 46.9,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND008",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Entry-Level Finance / Accounting Professional",
+            "ai_score": 41.18,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND006",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "HR Recruiter",
+            "ai_score": 39.71,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND010",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "HR Recruiter",
+            "ai_score": 39.62,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND003",
+            "job_id": "JOB003",
+            "job_title": "Data Analyst",
+            "designation": "Marketing Executive",
+            "ai_score": 37.53,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND001",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Software Engineer",
+            "ai_score": 60.17,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND002",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Web Developer",
+            "ai_score": 53.65,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND005",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Project Manager",
+            "ai_score": 48.43,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND009",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 37.91,
+            "ai_status": "Rejected",
+            "manual_status": "Review",
+            "classification": "False Negative"
+        },
+        {
+            "candidate_id": "CAND003",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Marketing Executive",
+            "ai_score": 36.25,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND004",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Cyber Security Fresher",
+            "ai_score": 36.09,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND007",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Data Analyst Fresher",
+            "ai_score": 25.74,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND006",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "HR Recruiter",
+            "ai_score": 25.16,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND010",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "HR Recruiter",
+            "ai_score": 25.02,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND008",
+            "job_id": "JOB004",
+            "job_title": "Java Developer",
+            "designation": "Entry-Level Finance / Accounting Professional",
+            "ai_score": 20.59,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND009",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "AI Engineer Fresher",
+            "ai_score": 67.35,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND004",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Cyber Security Fresher",
+            "ai_score": 56.9,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND007",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Data Analyst Fresher",
+            "ai_score": 50.56,
+            "ai_status": "Review",
+            "manual_status": "Rejected",
+            "classification": "False Positive"
+        },
+        {
+            "candidate_id": "CAND002",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Web Developer",
+            "ai_score": 49.74,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND001",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Software Engineer",
+            "ai_score": 48.88,
+            "ai_status": "Rejected",
+            "manual_status": "Review",
+            "classification": "False Negative"
+        },
+        {
+            "candidate_id": "CAND005",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Project Manager",
+            "ai_score": 46.07,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND006",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "HR Recruiter",
+            "ai_score": 38.34,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND010",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "HR Recruiter",
+            "ai_score": 38.1,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND008",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Entry-Level Finance / Accounting Professional",
+            "ai_score": 37.13,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
+        },
+        {
+            "candidate_id": "CAND003",
+            "job_id": "JOB005",
+            "job_title": "Machine Learning Engineer",
+            "designation": "Marketing Executive",
+            "ai_score": 37.08,
+            "ai_status": "Rejected",
+            "manual_status": "Rejected",
+            "classification": "True Negative"
         }
     ]
 }
