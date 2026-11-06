@@ -1,265 +1,142 @@
-# Zecpath ATS — Architecture Diagrams
-
-## 1. System Architecture
-
-This diagram shows the major modules in the Zecpath ATS project and their responsibilities. The API provides access to selected scoring and ranking functionality, while the ranking pipeline operates directly on resume and job-description JSON files.
-
-flowchart TB
-    User["Client / Developer"]
-
-    subgraph API["FastAPI Layer"]
-        Main["api/main.py"]
-        Schemas["api/schemas.py"]
-        Services["api/services.py"]
-        Logger["api/logger.py"]
-    end
-
-    subgraph Matching["Matching and Ranking"]
-        ATS["ATS Scoring Engine"]
-        Semantic["Semantic Matching Engine"]
-        Ranking["Candidate Ranking Engine"]
-        Pipeline["Candidate Ranking Pipeline"]
-        Normalize["Candidate Normalization"]
-    end
-
-    subgraph Parsing["Resume and Job Description Processing"]
-        ResumeParser["Resume Parser"]
-        SkillParser["Skill Extraction"]
-        ExperienceParser["Experience Parser"]
-        EducationParser["Education Parser"]
-        JDParser["Job Description Parser"]
-    end
-
-    subgraph Data["JSON Data"]
-        Resumes["data/resumes/"]
-        JDs["data/job_descriptions/"]
-        Scores["candidate_scores.json"]
-        Ranked["ranked_candidates.json"]
-        Uploads["data/uploads/"]
-    end
-
-    User --> Main
-    Main --> Schemas
-    Main --> Services
-    Main --> Logger
-
-    Services --> ATS
-    Services --> Ranking
-
-    Pipeline --> Resumes
-    Pipeline --> JDs
-    Pipeline --> Normalize
-    Pipeline --> ATS
-    Pipeline --> Semantic
-    Pipeline --> Ranking
-    Pipeline --> Scores
-    Ranking --> Ranked
-
-    Resumes -. "Parsed by separate modules" .-> ResumeParser
-    ResumeParser --> SkillParser
-    ResumeParser --> ExperienceParser
-    ResumeParser --> EducationParser
-    JDs -. "Processed by separate module" .-> JDParser
-
-    Main --> Uploads
-```
-
-**Implementation note:** The diagram groups modules by responsibility. It does not imply that the standalone parsing modules are automatically invoked by the ranking pipeline. The current API background-processing function is a placeholder, and its complete integration with the parsing, scoring, and ranking workflow remains future work.
-
-## 2. Candidate Scoring and Ranking Workflow
-
-The ranking pipeline reads structured resume and job-description data, computes component scores, generates final ATS scores, and ranks candidates.
-
-```mermaid
-flowchart TD
-    Start([Start Ranking Pipeline])
-
-    LoadResumes["Load Resume JSON Files"]
-    LoadJD["Load Parsed Job Description"]
-    Normalize["Normalize Candidate Data"]
-
-    Skill["Calculate Skill Match"]
-    Experience["Calculate Experience Relevance"]
-    Education["Calculate Education Alignment"]
-    Semantic["Calculate Semantic Similarity"]
-
-    Combine["Calculate Weighted ATS Score"]
-    Classify["Assign ATS Match Level"]
-    SaveScores["Save Candidate Scores"]
-    Rank["Rank Candidates by Score"]
-    Status["Assign Recruitment Status"]
-    SaveRanked["Save Ranked Candidates"]
-    End([Pipeline Returns Results])
-
-    Start --> LoadResumes
-    Start --> LoadJD
-
-    LoadResumes --> Normalize
-    Normalize --> Skill
-    Normalize --> Experience
-    Normalize --> Education
-    Normalize --> Semantic
+### Zecpath ATS — System Architecture ###
+
+## 1. Introduction
+The Zecpath Applicant Tracking System (ATS) follows a modular architecture designed to process resumes, extract candidate information, evaluate candidate-job compatibility, calculate ATS scores, and rank candidates.
+
+The system is organized into independent functional modules that handle API integration, resume processing, job description analysis, candidate matching, scoring, ranking, and data management.
+
+## 2. System Architecture Overview
+The Zecpath ATS consists of four major architectural layers:
+1. API Layer: Provides REST API endpoints through FastAPI for interacting with ATS functionalities.
+2. Processing Layer: Handles resume parsing, skill extraction, experience analysis, education extraction, and job description processing.
+3. Matching and Ranking Layer: Performs candidate-job matching, semantic similarity evaluation, ATS scoring, and candidate ranking.
+4. Data Layer: Manages resume records, job descriptions, uploaded documents, candidate evaluation results, and persistent application data.
+These layers work together to support the overall candidate evaluation process.
+
+## 3. Major Architectural Components
+# 3.1 FastAPI Layer
+The API layer provides an interface for clients and developers to interact with the ATS through HTTP requests.
+
+# It consists of the following components:
+Component	Responsibility
+api/main.py	Defines API routes and handles incoming HTTP requests.
+api/schemas.py	Defines request and response models using Pydantic.
+api/services.py	Coordinates application services and ATS operations.
+api/logger.py	Supports application logging and error tracking.
+
+The API layer validates incoming requests, invokes the required service functions, and returns structured JSON responses.
+
+# 3.2 Resume and Job Description Processing Layer
+This layer converts unstructured resume documents and job descriptions into structured information.
+Component	            Responsibility
+Resume Parser	        Extracts and structures information from candidate resumes.
+Skill Extraction 	    Identifies technical and non-technical skills.
+Experience Parser	    Extracts work experience and employment details.
+Education Parser	    Identifies educational qualifications.
+Job Description Parser	Extracts and structures job requirements.
+
+The extracted information is passed to the matching and scoring components for candidate evaluation.
+
+# 3.3 Matching and Ranking Layer
+This layer evaluates candidate suitability against job requirements.
+Component	Responsibility
+ATS Scoring Engine	        Calculates candidate-job compatibility scores.
+Semantic Matching Engine	Evaluates semantic similarity between candidate information and                         job requirements.
+Candidate Ranking Engine	Organizes candidates according to their evaluation results.
+Candidate Ranking Pipeline	Coordinates candidate evaluation and ranking operations.
+Candidate Normalization	    Prepares candidate information in a consistent structure for evaluation.
+
+The matching and ranking components work together to generate candidate scores, rankings, and recruitment decisions.
+
+# 3.4 Data Layer
+The data layer manages the information required by the ATS components.
+
+Storage Component	       Purpose
+data/resumes/	         Stores structured candidate resume records.
+data/job_descriptions/	 Stores job description information.
+data/uploads/	         Stores uploaded resume documents.
+candidate_scores.json	 Stores candidate scoring results, where generated by the pipeline.
+ranked_candidates.json	 Stores ranked candidate results, where generated by the pipeline.
+api_storage.db	         SQLite database used for API-related persistent records.
+
+
+## 4. System Integration and Communication
+The Zecpath ATS supports two main execution paths: API-based operations and the candidate ranking pipeline.
+
+# 4.1 API-Based Execution
+The API-based execution path allows external clients and developers to access selected ATS functionalities.
+
+The interaction process is as follows:
+1. A client submits an HTTP request through Swagger UI or another API client.
+2. FastAPI receives the incoming request.
+3. Pydantic schemas validate the request data.
+4. The API invokes the appropriate service function.
+5. The service interacts with the required processing, matching, scoring, or storage components.
+6. The result is returned as a structured JSON response.
+This execution path supports resume uploading, resume processing, candidate parsing, scoring, and shortlisting operations.
+
+# 4.2 Candidate Ranking Pipeline
+The candidate ranking pipeline provides a separate execution path for evaluating and ranking candidate profiles using structured resume and job description data.
+
+The general workflow includes:
+1. Loading candidate resume data.
+2. Loading the corresponding job description data.
+3. Normalizing candidate information.
+4. Performing skill-based and semantic matching.
+5. Calculating ATS scores.
+6. Evaluating candidate-job compatibility.
+7. Generating candidate rankings.
+8. Storing scoring and ranking results in the corresponding output files.
+
+# 4.3 Execution Path Separation
+The API layer and candidate ranking pipeline have different entry points and responsibilities.
+- The API layer provides request-driven access through FastAPI.
+- The ranking pipeline processes structured candidate and job description data.
+- Both paths use the relevant matching and scoring functionality.
+This separation allows API operations and batch candidate evaluation to be maintained independently.
+
+## 5. End-to-End Data Flow
+
+The major processing stages are:
+1. Input Acquisition: Candidate resumes are uploaded or loaded from existing data sources, while job descriptions are selected for evaluation.
+2. Resume Processing: The resume parser extracts textual information from the uploaded document.
+3. Information Extraction: Skills, experience, education, projects, and other relevant candidate details are identified.
+4. Job Description Processing: Job requirements, required skills, preferred skills, and experience criteria are extracted.
+5. Candidate Normalization: Candidate information is prepared in a consistent structure for evaluation.
+6. Candidate-Job Matching: Candidate qualifications are compared against the selected job requirements.
+7. ATS Scoring: The scoring engine calculates candidate-job compatibility scores.
+8. Candidate Ranking: Candidates are compared and organized according to their evaluation results.
+9. Recruitment Decision: Recruitment statuses are assigned based on the configured decision logic.
+10. Result Storage: Generated scoring and ranking information is stored in the corresponding application storage.
+This workflow enables the ATS to process candidate information systematically and generate structured evaluation results.
 
-    LoadJD --> Skill
-    LoadJD --> Experience
-    LoadJD --> Education
-    LoadJD --> Semantic
 
-    Skill --> Combine
-    Experience --> Combine
-    Education --> Combine
-    Semantic --> Combine
+## 6. Architectural Design Principles
+The Zecpath ATS follows the following architectural principles:
 
-    Combine --> Classify
-    Classify --> SaveScores
-    SaveScores --> Rank
-    Rank --> Status
-    Status --> SaveRanked
-    SaveRanked --> End
-```
+6.1 Modularity
+Each major functionality is implemented in a separate module. This allows individual components to be modified, tested, and maintained independently.
 
-### ATS score calculation
+6.2 Separation of Concerns
+API handling, resume parsing, candidate matching, scoring, and ranking are maintained as separate responsibilities.
 
-The final score is calculated from four normalized components:
+6.3 Reusability
+Common processing and evaluation functions can be reused across different parts of the system.
+6.4 Structured Data Processing
 
-```text
-Final ATS Score =
-(
-    Skill Match × 0.30
-  + Experience Relevance × 0.25
-  + Education Alignment × 0.20
-  + Semantic Similarity × 0.25
-) × 100
-```
+Candidate profiles and job descriptions are converted into structured formats to support consistent matching and evaluation.
 
-### Semantic similarity calculation
+6.5 Maintainability
+The modular directory structure makes it easier to identify, debug, test, and maintain individual components.
 
-The semantic matching engine combines three similarity values:
+6.6 Extensibility
+New parsing techniques, matching strategies, scoring criteria, and API functionalities can be introduced as the project evolves.
 
-```text
-Overall Semantic Similarity =
-    Skills Similarity × 0.40
-  + Experience Similarity × 0.35
-  + Projects Similarity × 0.25
-```
+## 7. Conclusion
+The Zecpath ATS architecture provides a modular foundation for resume processing, candidate-job matching, scoring, and ranking.
 
-The engine uses the `all-MiniLM-L6-v2` sentence-transformer model and cosine similarity. Generated embeddings are cached using an LRU cache with a maximum of 512 entries.
+By separating the API layer, processing components, matching and ranking engines, and data storage, the system supports organized development and independent maintenance of its major functionalities.
 
-### Candidate status assignment
+The separation between API based operations and the candidate ranking pipeline provides flexibility for request-driven processing as well as structured candidate evaluation.
 
-```mermaid
-flowchart TD
-    Input["Candidate Final Score"]
-
-    CheckShortlist{"Score >= 80?"}
-    CheckReview{"Score >= 50?"}
-
-    Shortlisted["Shortlisted"]
-    Review["Review"]
-    Rejected["Rejected"]
-
-    Input --> CheckShortlist
-    CheckShortlist -->|Yes| Shortlisted
-    CheckShortlist -->|No| CheckReview
-    CheckReview -->|Yes| Review
-    CheckReview -->|No| Rejected
-```
-
-The ATS match level and recruitment status are separate classifications. For example, a score of 70 is a **Good Match** and receives the recruitment status **Review**.
-
-## 3. API Request Flow
-
-The API layer uses FastAPI routes, Pydantic schemas, and service functions to expose selected ATS capabilities.
-
-```mermaid
-flowchart TD
-    Client["API Client"]
-
-    Route["FastAPI Route<br/>api/main.py"]
-    Schema["Request / Response Validation<br/>api/schemas.py"]
-    Service["Service Layer<br/>api/services.py"]
-
-    Scoring["ATS Scoring Engine"]
-    Ranking["Candidate Ranking Engine"]
-
-    Response["API Response"]
-    Error["HTTP Error Response"]
-
-    Client --> Route
-    Route --> Schema
-    Schema --> Service
-
-    Service --> Scoring
-    Service --> Ranking
-
-    Scoring --> Response
-    Ranking --> Response
-    Response --> Client
-
-    Route -. "Validation or operation errors" .-> Error
-    Error --> Client
-```
-
-### API endpoint responsibilities
-
-| Endpoint | Responsibility |
-|---|---|
-| `GET /` | Return API health information |
-| `POST /resume/upload` | Validate and save an uploaded resume |
-| `POST /resume/process` | Create a background job and return a job ID |
-| `GET /resume/process/{job_id}` | Return the stored job status |
-| `POST /resume/parse` | Validate supplied text and return it as parsed text |
-| `POST /candidate/score` | Calculate a weighted ATS score |
-| `POST /candidate/shortlist` | Rank candidates and assign recruitment statuses |
-
-### Background resume processing: current state
-
-The current `/resume/process` endpoint:
-
-1. Validates the uploaded filename, extension, and file contents.
-2. Saves the uploaded file under `data/uploads/`.
-3. Creates a unique job ID.
-4. Schedules `process_resume_job()` using FastAPI background tasks.
-5. Returns the job ID and initial queued status.
-
-The background function updates the job status and stores a placeholder result. It does **not** currently execute the complete resume parsing, normalization, matching, scoring, and ranking pipeline.
-
-Job records are kept in an in-memory dictionary, so they do not persist across application restarts.
-
-## 4. Architecture Design Principles
-
-### Modularity
-
-Parsing, semantic matching, scoring, ranking, and API responsibilities are separated into distinct modules.
-
-### Explainable scoring
-
-The ATS scoring engine returns a final score, match classification, component breakdown, and weights.
-
-### Reusability
-
-The API service layer delegates scoring and ranking to existing engine functions instead of duplicating their core calculations.
-
-### Performance
-
-The semantic matching engine caches generated embeddings to reduce repeated encoding work for identical text.
-
-### Testability
-
-The project contains automated tests for scoring, ranking, parsing, and other core modules.
-
-### Future extensibility
-
-The architecture can be extended by integrating the background-processing function with the existing parsing and matching modules, adding persistent job storage, and improving experience and education matching logic.
-
-## 5. Diagram Maintenance
-
-When the implementation changes:
-
-1. Update the relevant module descriptions and connections.
-2. Verify that every diagram reflects actual function calls and data flow.
-3. Clearly label planned integrations as future work.
-4. Update scoring formulas and thresholds when their implementation changes.
-5. Keep API endpoint documentation synchronized with `api/main.py` and `api/schemas.py`.
-
-These diagrams document the current architecture reviewed for Day 19 and should be updated alongside significant code changes.
+This architecture establishes a foundation for future enhancements in matching accuracy, system scalability, integration, and recruitment decision support.
