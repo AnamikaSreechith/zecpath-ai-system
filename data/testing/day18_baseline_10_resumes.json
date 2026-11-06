@@ -1,17 +1,49 @@
 {
     "benchmark": "Day 18 Baseline",
-    "resume_count": 2,
-    "successful_count": 2,
+    "resume_count": 10,
+    "successful_count": 10,
     "runs_per_resume": 3,
     "results": [
         {
-            "resume": "resume1.pdf",
-            "median_processing_seconds": 0.022747
+            "resume": "RES-03BB1B128FF5.pdf",
+            "median_processing_seconds": 0.040381
         },
         {
-            "resume": "test_resume.pdf",
-            "median_processing_seconds": 0.007326
+            "resume": "RES-053691B174FF.pdf",
+            "median_processing_seconds": 0.038922
+        },
+        {
+            "resume": "RES-0ADFE0D24231.pdf",
+            "median_processing_seconds": 0.041553
+        },
+        {
+            "resume": "RES-0C1764BD4612.pdf",
+            "median_processing_seconds": 0.044884
+        },
+        {
+            "resume": "RES-1AEF18A49464.pdf",
+            "median_processing_seconds": 0.045639
+        },
+        {
+            "resume": "RES-1D4D1DD2DCCC.pdf",
+            "median_processing_seconds": 0.059999
+        },
+        {
+            "resume": "RES-1ED7C78C7342.pdf",
+            "median_processing_seconds": 0.04681
+        },
+        {
+            "resume": "RES-2F2D09DB4996.pdf",
+            "median_processing_seconds": 0.034486
+        },
+        {
+            "resume": "RES-3315E7715CBD.pdf",
+            "median_processing_seconds": 0.042031
+        },
+        {
+            "resume": "RES-33AF6A31A7C8.pdf",
+            "median_processing_seconds": 0.05764
         }
     ],
-    "average_processing_seconds": 0.015036
+    "average_processing_seconds": 0.045234
 }
