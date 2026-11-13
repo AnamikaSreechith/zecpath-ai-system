@@ -1,0 +1,70 @@
+
+{
+  "template_dataset_id": "ZEC_SCREENING_TEMPLATES_V1",
+  "templates": [
+    {
+      "template_id": "TPL001",
+      "category": "Introduction",
+      "template_text": "Could you briefly introduce yourself and explain why you are interested in the {job_title} position?",
+      "placeholders": ["job_title"],
+      "expected_answer_type": "long_text",
+      "language": "en"
+    },
+    {
+      "template_id": "TPL002",
+      "category": "Education",
+      "template_text": "What is your highest educational qualification, and what did you specialize in?",
+      "placeholders": [],
+      "expected_answer_type": "text",
+      "language": "en"
+    },
+    {
+      "template_id": "TPL003",
+      "category": "Experience",
+      "template_text": "How many years of experience do you have in {job_title} or a related field?",
+      "placeholders": ["job_title"],
+      "expected_answer_type": "number",
+      "language": "en"
+    },
+    {
+      "template_id": "TPL004",
+      "category": "Skills",
+      "template_text": "Which of the following skills have you worked with: {required_skills}?",
+      "placeholders": ["required_skills"],
+      "expected_answer_type": "list",
+      "language": "en"
+    },
+    {
+      "template_id": "TPL005",
+      "category": "Skills",
+      "template_text": "Can you describe a project where you applied {skill_name}?",
+      "placeholders": ["skill_name"],
+      "expected_answer_type": "long_text",
+      "language": "en"
+    },
+    {
+      "template_id": "TPL006",
+      "category": "Location",
+      "template_text": "Are you comfortable working from {job_location}?",
+      "placeholders": ["job_location"],
+      "expected_answer_type": "boolean_with_details",
+      "language": "en"
+    },
+    {
+      "template_id": "TPL007",
+      "category": "Salary",
+      "template_text": "What is your expected annual compensation for this position?",
+      "placeholders": [],
+      "expected_answer_type": "number",
+      "language": "en"
+    },
+    {
+      "template_id": "TPL008",
+      "category": "Notice Period",
+      "template_text": "What is your current notice period in days?",
+      "placeholders": [],
+      "expected_answer_type": "number",
+      "language": "en"
+    }
+  ]
+}

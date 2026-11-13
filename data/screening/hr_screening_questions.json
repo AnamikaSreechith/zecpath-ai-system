@@ -1,0 +1,781 @@
+{
+  "dataset_id": "ZEC_HR_SCREENING_V1",
+  "version": "1.1.0",
+  "default_language": "en",
+  "supported_languages": [
+    "en"
+  ],
+  "future_language_support": true,
+  "description": "Reusable HR screening question bank for Zecpath ATS, with general and job-specific open-ended screening questions for five roles.",
+  "questions": [
+    {
+      "question_id": "HRQ001",
+      "category": "Introduction",
+      "question_text": "Could you briefly introduce yourself and describe your professional background?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "medium",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "evaluate_relevance_and_clarity",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ002",
+      "category": "Introduction",
+      "question_text": "Why are you interested in this position?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "evaluate_role_motivation",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ003",
+      "category": "Education",
+      "question_text": "What is your highest educational qualification?",
+      "expected_answer_type": "text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_job_requirements",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ004",
+      "category": "Education",
+      "question_text": "What was your field of study or specialization?",
+      "expected_answer_type": "text",
+      "mandatory": true,
+      "scoring_importance": "medium",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_job_requirements",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ005",
+      "category": "Education",
+      "question_text": "Have you completed any certifications or professional training relevant to this role?",
+      "expected_answer_type": "list",
+      "mandatory": false,
+      "scoring_importance": "medium",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "evaluate_relevance",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ006",
+      "category": "Experience",
+      "question_text": "How many years of total professional work experience do you have?",
+      "expected_answer_type": "number",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_experience_requirements",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ007",
+      "category": "Experience",
+      "question_text": "How many years of experience do you have in a role related to this position?",
+      "expected_answer_type": "number",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_experience_requirements",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ008",
+      "category": "Experience",
+      "question_text": "Could you describe a project or professional responsibility relevant to this position?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "evaluate_relevance_and_ownership",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ009",
+      "category": "Skills",
+      "question_text": "Which technical or professional skills do you have that are relevant to this position?",
+      "expected_answer_type": "list",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_skills",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ010",
+      "category": "Skills",
+      "question_text": "Which tools, technologies, or platforms have you worked with?",
+      "expected_answer_type": "list",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_job_requirements",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ011",
+      "category": "Skills",
+      "question_text": "Can you explain how you used one of your key skills in a project or work assignment?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "evaluate_practical_application",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ012",
+      "category": "Skills",
+      "question_text": "How do you approach learning a new tool or technology required for a role? Please give an example of something you learned and how you applied it.",
+      "expected_answer_type": "long_text",
+      "mandatory": false,
+      "scoring_importance": "low",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "evaluate_learning_flexibility",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ013",
+      "category": "Location",
+      "question_text": "Where are you currently located?",
+      "expected_answer_type": "text",
+      "mandatory": true,
+      "scoring_importance": "medium",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_location_requirements",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ014",
+      "category": "Location",
+      "question_text": "What relocation, commuting, or remote-work arrangements would you be comfortable with?",
+      "expected_answer_type": "long_text",
+      "mandatory": false,
+      "scoring_importance": "medium",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_location_requirements",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ015",
+      "category": "Location",
+      "question_text": "Are you comfortable working from the location or work arrangement specified for this role?",
+      "expected_answer_type": "text",
+      "mandatory": true,
+      "scoring_importance": "medium",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_work_arrangement",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ016",
+      "category": "Salary",
+      "question_text": "What is your current annual compensation, if applicable?",
+      "expected_answer_type": "number",
+      "mandatory": false,
+      "scoring_importance": "low",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "informational_only",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ017",
+      "category": "Salary",
+      "question_text": "What is your expected annual compensation for this position?",
+      "expected_answer_type": "number",
+      "mandatory": true,
+      "scoring_importance": "medium",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_salary_budget",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ018",
+      "category": "Salary",
+      "question_text": "How would you describe your flexibility regarding the compensation range for this position?",
+      "expected_answer_type": "long_text",
+      "mandatory": false,
+      "scoring_importance": "low",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "informational_only",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ019",
+      "category": "Notice Period",
+      "question_text": "What is your current notice period?",
+      "expected_answer_type": "number",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_notice_period_requirement",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ020",
+      "category": "Notice Period",
+      "question_text": "When would you be available to join if selected?",
+      "expected_answer_type": "date_or_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "evaluate_joining_availability",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ021",
+      "category": "Notice Period",
+      "question_text": "If your notice period is longer than the required joining timeline, what options would you have to negotiate or adjust your joining date?",
+      "expected_answer_type": "long_text",
+      "mandatory": false,
+      "scoring_importance": "medium",
+      "applicable_roles": [
+        "ALL"
+      ],
+      "language": "en",
+      "scoring_policy": "evaluate_joining_flexibility",
+      "is_active": true
+    },
+    {
+      "question_id": "HRQ022",
+      "category": "Skills",
+      "question_text": "Please describe your experience using Python, SQL, REST APIs, and Git. For each skill, explain how you have applied it in a project or work assignment.",
+      "expected_answer_type": "list_with_details",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB001"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "python",
+        "sql",
+        "rest apis",
+        "git"
+      ],
+      "preferred_skill_checks": [
+        "fastapi",
+        "docker",
+        "aws"
+      ],
+      "source_job_id": "JOB001"
+    },
+    {
+      "question_id": "HRQ023",
+      "category": "Skills",
+      "question_text": "Please describe your experience with Python, SQL, statistics, data visualization, exploratory data analysis, and data preprocessing. Give examples of how you have used these skills to analyze data.",
+      "expected_answer_type": "list_with_details",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB003"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "python",
+        "sql",
+        "statistics",
+        "data visualization",
+        "exploratory data analysis",
+        "data preprocessing"
+      ],
+      "preferred_skill_checks": [
+        "microsoft excel",
+        "power bi",
+        "tableau",
+        "pandas",
+        "numpy"
+      ],
+      "source_job_id": "JOB003"
+    },
+    {
+      "question_id": "HRQ024",
+      "category": "Skills",
+      "question_text": "Please describe your experience with Python, machine learning, data preprocessing, and model evaluation. Explain a model or project you have worked on and how you evaluated its performance.",
+      "expected_answer_type": "list_with_details",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB005"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "python",
+        "machine learning",
+        "data preprocessing",
+        "model evaluation"
+      ],
+      "preferred_skill_checks": [
+        "sql",
+        "rest apis",
+        "pandas",
+        "numpy",
+        "scikit-learn",
+        "tensorflow",
+        "pytorch"
+      ],
+      "source_job_id": "JOB005"
+    },
+    {
+      "question_id": "HRQ025",
+      "category": "Skills",
+      "question_text": "Please describe your experience with candidate sourcing, resume screening, and communication with candidates. Include the recruitment tools or platforms you have used.",
+      "expected_answer_type": "list_with_details",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB002"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "candidate sourcing",
+        "resume screening",
+        "communication"
+      ],
+      "preferred_skill_checks": [
+        "linkedin recruiter",
+        "applicant tracking systems",
+        "microsoft excel"
+      ],
+      "source_job_id": "JOB002"
+    },
+    {
+      "question_id": "HRQ026",
+      "category": "Skills",
+      "question_text": "Walk me through a Python application or project you developed. What was your responsibility, how was the application structured, and what challenges did you solve?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB001"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "python"
+      ],
+      "preferred_skill_checks": [
+        "fastapi",
+        "docker",
+        "aws"
+      ],
+      "source_job_id": "JOB001"
+    },
+    {
+      "question_id": "HRQ027",
+      "category": "Skills",
+      "question_text": "Describe a REST API you built or integrated. What endpoints or methods did you work with, and how did your application communicate with the API?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB001"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "rest apis",
+        "python"
+      ],
+      "preferred_skill_checks": [
+        "fastapi"
+      ],
+      "source_job_id": "JOB001"
+    },
+    {
+      "question_id": "HRQ028",
+      "category": "Skills",
+      "question_text": "Explain a SQL task you completed in a project. What tables or relationships were involved, and what queries did you write? Also describe how you used Git to manage your code.",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB001"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "sql",
+        "git"
+      ],
+      "preferred_skill_checks": [
+        "docker",
+        "aws"
+      ],
+      "source_job_id": "JOB001"
+    },
+    {
+      "question_id": "HRQ029",
+      "category": "Skills",
+      "question_text": "Describe how you would source suitable candidates for a job opening. Which job portals, professional networks, or sourcing methods would you use?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB002"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "candidate sourcing"
+      ],
+      "preferred_skill_checks": [
+        "linkedin recruiter"
+      ],
+      "source_job_id": "JOB002"
+    },
+    {
+      "question_id": "HRQ030",
+      "category": "Skills",
+      "question_text": "How do you screen a resume against a job description? Explain the criteria you would check and how you would decide whether a candidate should move forward.",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB002"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "resume screening"
+      ],
+      "preferred_skill_checks": [
+        "applicant tracking systems",
+        "microsoft excel"
+      ],
+      "source_job_id": "JOB002"
+    },
+    {
+      "question_id": "HRQ031",
+      "category": "Skills",
+      "question_text": "Describe how you would coordinate an interview between a candidate and a hiring manager. How would you communicate updates and maintain recruitment records?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB002"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "communication"
+      ],
+      "preferred_skill_checks": [
+        "applicant tracking systems",
+        "microsoft excel"
+      ],
+      "source_job_id": "JOB002"
+    },
+    {
+      "question_id": "HRQ032",
+      "category": "Skills",
+      "question_text": "Describe a data analysis task where you used SQL. What data were you working with, what queries did you write, and what insights did you obtain?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB003"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "sql"
+      ],
+      "preferred_skill_checks": [
+        "microsoft excel"
+      ],
+      "source_job_id": "JOB003"
+    },
+    {
+      "question_id": "HRQ033",
+      "category": "Skills",
+      "question_text": "Walk me through how you clean and preprocess a dataset before analysis. Explain how you perform exploratory data analysis and use statistics to understand the data.",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB003"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "data preprocessing",
+        "exploratory data analysis",
+        "statistics"
+      ],
+      "preferred_skill_checks": [
+        "python",
+        "pandas",
+        "numpy"
+      ],
+      "source_job_id": "JOB003"
+    },
+    {
+      "question_id": "HRQ034",
+      "category": "Skills",
+      "question_text": "Describe a dashboard or data visualization you created. Which tool did you use, what metrics did you present, and how did the visualization support a decision?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB003"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "data visualization"
+      ],
+      "preferred_skill_checks": [
+        "power bi",
+        "tableau",
+        "microsoft excel"
+      ],
+      "source_job_id": "JOB003"
+    },
+    {
+      "question_id": "HRQ035",
+      "category": "Skills",
+      "question_text": "Walk me through a Java application or project you developed. Explain the main components and your contribution.",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB004"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "java"
+      ],
+      "preferred_skill_checks": [
+        "spring boot",
+        "maven"
+      ],
+      "source_job_id": "JOB004"
+    },
+    {
+      "question_id": "HRQ036",
+      "category": "Skills",
+      "question_text": "Can you explain how you have applied object-oriented programming concepts such as encapsulation, inheritance, polymorphism, or abstraction in a Java project?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB004"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "object-oriented programming",
+        "java"
+      ],
+      "preferred_skill_checks": [
+        "hibernate"
+      ],
+      "source_job_id": "JOB004"
+    },
+    {
+      "question_id": "HRQ037",
+      "category": "Skills",
+      "question_text": "Describe how you have used SQL and REST APIs in a Java application. Which frameworks or tools, such as Spring Boot, Hibernate, or Maven, have you worked with?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB004"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "sql",
+        "rest apis"
+      ],
+      "preferred_skill_checks": [
+        "spring boot",
+        "hibernate",
+        "maven",
+        "git",
+        "docker"
+      ],
+      "source_job_id": "JOB004"
+    },
+    {
+      "question_id": "HRQ038",
+      "category": "Skills",
+      "question_text": "Describe a machine learning project you have worked on. What problem were you solving, which algorithm did you choose, and why?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB005"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "machine learning",
+        "python"
+      ],
+      "preferred_skill_checks": [
+        "scikit-learn",
+        "tensorflow",
+        "pytorch"
+      ],
+      "source_job_id": "JOB005"
+    },
+    {
+      "question_id": "HRQ039",
+      "category": "Skills",
+      "question_text": "Explain the steps you follow to preprocess a dataset for machine learning. How do you handle missing values, categorical variables, scaling, or other data quality issues?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB005"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "data preprocessing"
+      ],
+      "preferred_skill_checks": [
+        "pandas",
+        "numpy"
+      ],
+      "source_job_id": "JOB005"
+    },
+    {
+      "question_id": "HRQ040",
+      "category": "Skills",
+      "question_text": "How do you evaluate a machine learning model? Explain the evaluation metrics you selected and how you used the results to improve model performance.",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB005"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "model evaluation"
+      ],
+      "preferred_skill_checks": [
+        "scikit-learn",
+        "tensorflow",
+        "pytorch"
+      ],
+      "source_job_id": "JOB005"
+    },
+    {
+      "question_id": "HRQ041",
+      "category": "Skills",
+      "question_text": "Describe a software issue or bug you investigated in a Java application. How did you identify the cause, debug the problem, and verify the fix?",
+      "expected_answer_type": "long_text",
+      "mandatory": true,
+      "scoring_importance": "high",
+      "applicable_roles": [
+        "JOB004"
+      ],
+      "language": "en",
+      "scoring_policy": "compare_with_required_and_preferred_skills",
+      "is_active": true,
+      "required_skill_checks": [
+        "java"
+      ],
+      "preferred_skill_checks": [
+        "spring boot",
+        "hibernate",
+        "maven"
+      ],
+      "source_job_id": "JOB004"
+    }
+  ]
+}

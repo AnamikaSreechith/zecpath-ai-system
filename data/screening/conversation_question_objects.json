@@ -1,0 +1,797 @@
+{
+  "conversation_dataset_id": "ZEC_AI_CONVERSATION_QUESTIONS_V1",
+  "version": "1.1.0",
+  "conversation_settings": {
+    "default_language": "en",
+    "allow_follow_up": true,
+    "allow_candidate_to_skip_optional": true,
+    "ask_one_question_at_a_time": true,
+    "save_original_response": true,
+    "future_multilingual_support": true,
+    "question_order": "general_then_role_specific",
+    "role_specific_questions_enabled": true,
+    "wait_for_candidate_response_before_next_question": true,
+    "capture_response_before_advancing": true,
+    "allow_contextual_follow_up": true,
+    "max_follow_ups_per_question": 1
+  },
+  "question_flow": [
+    {
+      "question_id": "HRQ001",
+      "category": "Introduction",
+      "prompt_style": "open_ended",
+      "opening_text": "Let's start with a brief introduction.",
+      "response_capture": {
+        "type": "long_text",
+        "store_transcript": true
+      },
+      "follow_up_enabled": true,
+      "follow_up_prompt": "Could you tell me a little more about your relevant background?",
+      "next_question_id": "HRQ002"
+    },
+    {
+      "question_id": "HRQ002",
+      "category": "Introduction",
+      "prompt_style": "open_ended",
+      "opening_text": "Why are you interested in this position?",
+      "response_capture": {
+        "type": "long_text",
+        "store_transcript": true
+      },
+      "follow_up_enabled": true,
+      "follow_up_prompt": "Which aspects of this role interest you the most?",
+      "next_question_id": "HRQ003"
+    },
+    {
+      "question_id": "HRQ003",
+      "category": "Education",
+      "prompt_style": "direct",
+      "opening_text": "What is your highest educational qualification?",
+      "response_capture": {
+        "type": "text",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ004"
+    },
+    {
+      "question_id": "HRQ004",
+      "category": "Education",
+      "prompt_style": "direct",
+      "opening_text": "What was your field of study or specialization?",
+      "response_capture": {
+        "type": "text",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ005"
+    },
+    {
+      "question_id": "HRQ005",
+      "category": "Education",
+      "prompt_style": "open_ended",
+      "opening_text": "Have you completed any certifications or professional training relevant to this role?",
+      "response_capture": {
+        "type": "list",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ006"
+    },
+    {
+      "question_id": "HRQ006",
+      "category": "Experience",
+      "prompt_style": "direct",
+      "opening_text": "How many years of total professional work experience do you have?",
+      "response_capture": {
+        "type": "number",
+        "unit": "years",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ007"
+    },
+    {
+      "question_id": "HRQ007",
+      "category": "Experience",
+      "prompt_style": "direct",
+      "opening_text": "How many years of experience do you have in a role related to this position?",
+      "response_capture": {
+        "type": "number",
+        "unit": "years",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ008"
+    },
+    {
+      "question_id": "HRQ008",
+      "category": "Experience",
+      "prompt_style": "open_ended",
+      "opening_text": "Could you describe a project or professional responsibility relevant to this position?",
+      "response_capture": {
+        "type": "long_text",
+        "store_transcript": true
+      },
+      "follow_up_enabled": true,
+      "follow_up_prompt": "What was your specific contribution to that project or responsibility?",
+      "next_question_id": "HRQ009"
+    },
+    {
+      "question_id": "HRQ009",
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Which technical or professional skills do you have that are relevant to this position?",
+      "response_capture": {
+        "type": "list",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ010"
+    },
+    {
+      "question_id": "HRQ010",
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Which tools, technologies, or platforms have you worked with?",
+      "response_capture": {
+        "type": "list",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ011"
+    },
+    {
+      "question_id": "HRQ011",
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Can you explain how you used one of your key skills in a project or work assignment?",
+      "response_capture": {
+        "type": "long_text",
+        "store_transcript": true
+      },
+      "follow_up_enabled": true,
+      "follow_up_prompt": "What result did you achieve using that skill?",
+      "next_question_id": "HRQ012"
+    },
+    {
+      "question_id": "HRQ012",
+      "category": "Skills",
+      "prompt_style": "yes_no_with_details",
+      "opening_text": "Are you comfortable learning new tools or technologies required for this role?",
+      "response_capture": {
+        "type": "boolean_with_details",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ013"
+    },
+    {
+      "question_id": "HRQ013",
+      "category": "Location",
+      "prompt_style": "direct",
+      "opening_text": "Where are you currently located?",
+      "response_capture": {
+        "type": "text",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ014"
+    },
+    {
+      "question_id": "HRQ014",
+      "category": "Location",
+      "prompt_style": "yes_no_with_details",
+      "opening_text": "Are you willing to relocate if the position requires it?",
+      "response_capture": {
+        "type": "boolean_with_details",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ015"
+    },
+    {
+      "question_id": "HRQ015",
+      "category": "Location",
+      "prompt_style": "direct",
+      "opening_text": "Are you comfortable working from the location or work arrangement specified for this role?",
+      "response_capture": {
+        "type": "text",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ016"
+    },
+    {
+      "question_id": "HRQ016",
+      "category": "Salary",
+      "prompt_style": "direct",
+      "opening_text": "What is your current annual compensation, if applicable?",
+      "response_capture": {
+        "type": "number",
+        "unit": "annual_currency_amount",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ017"
+    },
+    {
+      "question_id": "HRQ017",
+      "category": "Salary",
+      "prompt_style": "direct",
+      "opening_text": "What is your expected annual compensation for this position?",
+      "response_capture": {
+        "type": "number",
+        "unit": "annual_currency_amount",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ018"
+    },
+    {
+      "question_id": "HRQ018",
+      "category": "Salary",
+      "prompt_style": "yes_no_with_details",
+      "opening_text": "Is your expected compensation negotiable?",
+      "response_capture": {
+        "type": "boolean_with_details",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ019"
+    },
+    {
+      "question_id": "HRQ019",
+      "category": "Notice Period",
+      "prompt_style": "direct",
+      "opening_text": "What is your current notice period?",
+      "response_capture": {
+        "type": "number",
+        "unit": "days",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ020"
+    },
+    {
+      "question_id": "HRQ020",
+      "category": "Notice Period",
+      "prompt_style": "direct",
+      "opening_text": "When would you be available to join if selected?",
+      "response_capture": {
+        "type": "date_or_text",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": "HRQ021"
+    },
+    {
+      "question_id": "HRQ021",
+      "category": "Notice Period",
+      "prompt_style": "yes_no_with_details",
+      "opening_text": "Would you be able to negotiate or reduce your notice period?",
+      "response_capture": {
+        "type": "boolean_with_details",
+        "store_structured_value": true
+      },
+      "follow_up_enabled": false,
+      "next_question_id": null
+    }
+  ],
+  "role_specific_question_ids": {
+    "JOB001": [
+      "HRQ022",
+      "HRQ026",
+      "HRQ027",
+      "HRQ028"
+    ],
+    "JOB002": [
+      "HRQ025",
+      "HRQ029",
+      "HRQ030",
+      "HRQ031"
+    ],
+    "JOB003": [
+      "HRQ023",
+      "HRQ032",
+      "HRQ033",
+      "HRQ034"
+    ],
+    "JOB004": [
+      "HRQ035",
+      "HRQ036",
+      "HRQ037",
+      "HRQ041"
+    ],
+    "JOB005": [
+      "HRQ024",
+      "HRQ038",
+      "HRQ039",
+      "HRQ040"
+    ]
+  },
+  "role_specific_question_note": "Select the sequence matching the candidate's job ID. Resolve each question_id against the main HR screening question bank. Ask one question at a time, capture the original response, and ask at most one contextual follow-up only when clarification or a relevant example is needed. After the final role-specific question, end the screening flow.",
+  "role_specific_question_flow": [
+    {
+      "question_id": "HRQ022",
+      "applicable_job_id": "JOB001",
+      "sequence": 1,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Please describe your experience using Python, SQL, REST APIs, and Git. For each skill, explain how you have applied it in a project or work assignment.",
+      "response_capture": {
+        "type": "list_with_details",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "Could you give a specific example of a project where you used these skills and explain your contribution?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ026",
+      "evaluation_reference": "HRQ022"
+    },
+    {
+      "question_id": "HRQ026",
+      "applicable_job_id": "JOB001",
+      "sequence": 2,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Walk me through a Python application or project you developed. What was your responsibility, how was the application structured, and what challenges did you solve?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "What was the most significant technical challenge, and how did you address it?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ027",
+      "evaluation_reference": "HRQ026"
+    },
+    {
+      "question_id": "HRQ027",
+      "applicable_job_id": "JOB001",
+      "sequence": 3,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Describe a REST API you built or integrated. What endpoints or methods did you work with, and how did your application communicate with the API?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How did you handle errors, authentication, or failures when working with the API?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ028",
+      "evaluation_reference": "HRQ027"
+    },
+    {
+      "question_id": "HRQ028",
+      "applicable_job_id": "JOB001",
+      "sequence": 4,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Explain a SQL task you completed in a project. What tables or relationships were involved, and what queries did you write? Also describe how you used Git to manage your code.",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "What was the purpose of the query, and how did you check that the results were correct?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": null,
+      "evaluation_reference": "HRQ028"
+    },
+    {
+      "question_id": "HRQ025",
+      "applicable_job_id": "JOB002",
+      "sequence": 1,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Please describe your experience with candidate sourcing, resume screening, and communication with candidates. Include the recruitment tools or platforms you have used.",
+      "response_capture": {
+        "type": "list_with_details",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "Could you describe one recruitment activity where you used these skills and what the outcome was?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ029",
+      "evaluation_reference": "HRQ025"
+    },
+    {
+      "question_id": "HRQ029",
+      "applicable_job_id": "JOB002",
+      "sequence": 2,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Describe how you would source suitable candidates for a job opening. Which job portals, professional networks, or sourcing methods would you use?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How would you assess whether the candidates you sourced were a good match for the role?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ030",
+      "evaluation_reference": "HRQ029"
+    },
+    {
+      "question_id": "HRQ030",
+      "applicable_job_id": "JOB002",
+      "sequence": 3,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "How do you screen a resume against a job description? Explain the criteria you would check and how you would decide whether a candidate should move forward.",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "Can you give an example of how you handled a borderline or partially matching resume?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ031",
+      "evaluation_reference": "HRQ030"
+    },
+    {
+      "question_id": "HRQ031",
+      "applicable_job_id": "JOB002",
+      "sequence": 4,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Describe how you would coordinate an interview between a candidate and a hiring manager. How would you communicate updates and maintain recruitment records?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How would you handle a last-minute interview reschedule or a communication issue?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": null,
+      "evaluation_reference": "HRQ031"
+    },
+    {
+      "question_id": "HRQ023",
+      "applicable_job_id": "JOB003",
+      "sequence": 1,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Please describe your experience with Python, SQL, statistics, data visualization, exploratory data analysis, and data preprocessing. Give examples of how you have used these skills to analyze data.",
+      "response_capture": {
+        "type": "list_with_details",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "Could you walk me through one analysis where these skills helped you reach a useful insight?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ032",
+      "evaluation_reference": "HRQ023"
+    },
+    {
+      "question_id": "HRQ032",
+      "applicable_job_id": "JOB003",
+      "sequence": 2,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Describe a data analysis task where you used SQL. What data were you working with, what queries did you write, and what insights did you obtain?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How did you validate the results and communicate the insight to stakeholders?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ033",
+      "evaluation_reference": "HRQ032"
+    },
+    {
+      "question_id": "HRQ033",
+      "applicable_job_id": "JOB003",
+      "sequence": 3,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Walk me through how you clean and preprocess a dataset before analysis. Explain how you perform exploratory data analysis and use statistics to understand the data.",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How did you decide which preprocessing steps were necessary, and how did they affect the analysis?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ034",
+      "evaluation_reference": "HRQ033"
+    },
+    {
+      "question_id": "HRQ034",
+      "applicable_job_id": "JOB003",
+      "sequence": 4,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Describe a dashboard or data visualization you created. Which tool did you use, what metrics did you present, and how did the visualization support a decision?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How did you choose the metrics and ensure the dashboard was useful to its audience?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": null,
+      "evaluation_reference": "HRQ034"
+    },
+    {
+      "question_id": "HRQ035",
+      "applicable_job_id": "JOB004",
+      "sequence": 1,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Walk me through a Java application or project you developed. Explain the main components and your contribution.",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "What technical challenge did you face, and how did you contribute to solving it?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ036",
+      "evaluation_reference": "HRQ035"
+    },
+    {
+      "question_id": "HRQ036",
+      "applicable_job_id": "JOB004",
+      "sequence": 2,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Can you explain how you have applied object-oriented programming concepts such as encapsulation, inheritance, polymorphism, or abstraction in a Java project?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "Could you give a practical example of one of those concepts from your Java project?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ037",
+      "evaluation_reference": "HRQ036"
+    },
+    {
+      "question_id": "HRQ037",
+      "applicable_job_id": "JOB004",
+      "sequence": 3,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Describe how you have used SQL and REST APIs in a Java application. Which frameworks or tools, such as Spring Boot, Hibernate, or Maven, have you worked with?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How did the API and database components work together in your application?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ041",
+      "evaluation_reference": "HRQ037"
+    },
+    {
+      "question_id": "HRQ041",
+      "applicable_job_id": "JOB004",
+      "sequence": 4,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Describe a software issue or bug you investigated in a Java application. How did you identify the cause, debug the problem, and verify the fix?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "What evidence confirmed that your fix resolved the issue without causing regressions?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": null,
+      "evaluation_reference": "HRQ041"
+    },
+    {
+      "question_id": "HRQ024",
+      "applicable_job_id": "JOB005",
+      "sequence": 1,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Please describe your experience with Python, machine learning, data preprocessing, and model evaluation. Explain a model or project you have worked on and how you evaluated its performance.",
+      "response_capture": {
+        "type": "list_with_details",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "Could you explain your own contribution to the model and the evaluation results you obtained?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ038",
+      "evaluation_reference": "HRQ024"
+    },
+    {
+      "question_id": "HRQ038",
+      "applicable_job_id": "JOB005",
+      "sequence": 2,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Describe a machine learning project you have worked on. What problem were you solving, which algorithm did you choose, and why?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How did you compare your chosen algorithm with alternatives?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ039",
+      "evaluation_reference": "HRQ038"
+    },
+    {
+      "question_id": "HRQ039",
+      "applicable_job_id": "JOB005",
+      "sequence": 3,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "Explain the steps you follow to preprocess a dataset for machine learning. How do you handle missing values, categorical variables, scaling, or other data quality issues?",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "How did you check that preprocessing improved data quality without introducing data leakage?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": "HRQ040",
+      "evaluation_reference": "HRQ039"
+    },
+    {
+      "question_id": "HRQ040",
+      "applicable_job_id": "JOB005",
+      "sequence": 4,
+      "category": "Skills",
+      "prompt_style": "open_ended",
+      "opening_text": "How do you evaluate a machine learning model? Explain the evaluation metrics you selected and how you used the results to improve model performance.",
+      "response_capture": {
+        "type": "long_text",
+        "store_structured_value": true,
+        "store_transcript": true
+      },
+      "mandatory": true,
+      "scoring_importance": "high",
+      "follow_up_policy": {
+        "enabled": true,
+        "condition": "Ask only when the candidate's answer is unclear, incomplete, or lacks a relevant example; otherwise continue.",
+        "prompt": "What did the evaluation results reveal, and what changes did you make based on them?",
+        "max_follow_ups": 1
+      },
+      "next_question_id": null,
+      "evaluation_reference": "HRQ040"
+    }
+  ],
+  "conversation_execution_order": {
+    "steps": [
+      {
+        "step": 1,
+        "flow": "question_flow",
+        "description": "Ask the general screening questions in their configured order."
+      },
+      {
+        "step": 2,
+        "flow": "role_specific_question_flow",
+        "description": "After the general flow, select and ask the role-specific questions for the candidate's job ID in sequence order."
+      },
+      {
+        "step": 3,
+        "flow": "complete",
+        "description": "Mark the screening conversation complete after the final applicable role-specific question."
+      }
+    ],
+    "advance_rule": "Do not advance until the current response has been captured. If a follow-up is triggered, capture that response before advancing.",
+    "unknown_job_id_rule": "If no role-specific mapping exists for the job ID, complete the general screening flow and flag the missing role mapping for review."
+  }
+}

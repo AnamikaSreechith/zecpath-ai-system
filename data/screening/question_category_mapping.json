@@ -1,0 +1,102 @@
+{
+  "mapping_id": "ZEC_CATEGORY_MAP_V1",
+  "categories": [
+    {
+      "category_id": "CAT001",
+      "category_name": "Introduction",
+      "description": "Candidate introduction, background, and motivation",
+      "question_ids": [
+        "HRQ001",
+        "HRQ002"
+      ],
+      "display_order": 1
+    },
+    {
+      "category_id": "CAT002",
+      "category_name": "Education",
+      "description": "Academic qualifications, specialization, and certifications",
+      "question_ids": [
+        "HRQ003",
+        "HRQ004",
+        "HRQ005"
+      ],
+      "display_order": 2
+    },
+    {
+      "category_id": "CAT003",
+      "category_name": "Experience",
+      "description": "Total experience, relevant experience, and project exposure",
+      "question_ids": [
+        "HRQ006",
+        "HRQ007",
+        "HRQ008"
+      ],
+      "display_order": 3
+    },
+    {
+      "category_id": "CAT004",
+      "category_name": "Skills",
+      "description": "Role-related skills, tools, technologies, and practical application",
+      "question_ids": [
+        "HRQ009",
+        "HRQ010",
+        "HRQ011",
+        "HRQ012",
+        "HRQ022",
+        "HRQ023",
+        "HRQ024",
+        "HRQ025",
+        "HRQ026",
+        "HRQ027",
+        "HRQ028",
+        "HRQ029",
+        "HRQ030",
+        "HRQ031",
+        "HRQ032",
+        "HRQ033",
+        "HRQ034",
+        "HRQ035",
+        "HRQ036",
+        "HRQ037",
+        "HRQ038",
+        "HRQ039",
+        "HRQ040",
+        "HRQ041"
+      ],
+      "display_order": 4
+    },
+    {
+      "category_id": "CAT005",
+      "category_name": "Location",
+      "description": "Current location, relocation preference, and work arrangement",
+      "question_ids": [
+        "HRQ013",
+        "HRQ014",
+        "HRQ015"
+      ],
+      "display_order": 5
+    },
+    {
+      "category_id": "CAT006",
+      "category_name": "Salary",
+      "description": "Current compensation, expected compensation, and negotiation flexibility",
+      "question_ids": [
+        "HRQ016",
+        "HRQ017",
+        "HRQ018"
+      ],
+      "display_order": 6
+    },
+    {
+      "category_id": "CAT007",
+      "category_name": "Notice Period",
+      "description": "Notice period, joining availability, and early joining possibility",
+      "question_ids": [
+        "HRQ019",
+        "HRQ020",
+        "HRQ021"
+      ],
+      "display_order": 7
+    }
+  ]
+}
